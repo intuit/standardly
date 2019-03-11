@@ -23,8 +23,6 @@ function createTestlet(target, ruleType, ruleset, rulesfile, excludeDirs) {
         return new PatternNonExistenceTestlet(target, ruleset, rulesfile, excludeDirs);
     } else if (ruleType == RuleTypeEnum.FMCP) {
         return new PatternExistenceTestlet(target, ruleset, rulesfile, excludeDirs);
-    } else if (ruleType == RuleTypeEnum.SECRETKEYS) {
-        return new SecretKeysNonExistenceTestlet(target.giturl, ruleset, excludeDirs);
     } else {
         return new Testlet(target, null, ruleset, rulesfile, excludeDirs);
     }

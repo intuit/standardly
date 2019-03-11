@@ -147,14 +147,6 @@
     ]
   },
   {
-    "SECRETKEYS": [
-      {
-        "ruleID": "OOS-SKEY-0001",
-        "description": "AWS and internal keys"
-      }
-    ]
-  },
-  {
     "FMCP": [
       {
         "ruleID": "OOS-FMCP-0001",
