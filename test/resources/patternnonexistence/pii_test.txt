@@ -1,0 +1,20 @@
+abc@gmail.com //email
+a.bc@gmail.com //email
+a.b.c@org.net  //email
+;;'\/abc.def@hotmail.com 
+sbcc@yahoocom //not an email 
+9@yahoo.com //email
+567-345-3447
+(456)-345-4567
+233467899
+;,.234-34-3456..
+".564-89-2444"
+569-00-666
+node@1.2.3 //the at sign used to result in false positives
+npm@1.2 //this is not an email either just because there is an @
+@babel/runtime@7.0.0 //this should not match an email
+github.com/xyz/xyz@v1.2 //another non email pattern that should not be picked up
+asa.asd
+developer.company.com // should not be picked up as internal url
+abc.company.com // should be picked up as internal url
+xxxx def.company.com // should be picked up as internal url

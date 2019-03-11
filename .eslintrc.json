@@ -1,0 +1,38 @@
+{
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 2017
+    },
+    "env": {
+        "es6": true,
+        "node": true,
+        "mocha": true
+    },
+    "plugins": [
+        "mocha"
+    ],
+    "rules": {
+        "mocha/no-exclusive-tests": "error",
+        "curly": "error",
+        "quotes": ["error", "double", { "avoidEscape": true }],
+        "brace-style": ["error", "1tbs"],
+        "semi": ["error", "always"],
+        "semi-style": ["error", "last"],
+        "indent": ["error", 4],
+        "camelcase": "error",
+        "array-bracket-newline": ["error", "never"],
+        "array-bracket-spacing": ["error", "never"],
+        "array-element-newline": ["error", "never"],
+        "block-spacing": ["error", "always"],
+        "comma-dangle": ["error", "never"],
+        "comma-spacing": ["error", {"before": false, "after": true}],
+        "comma-style": ["error", "last"],
+        "func-call-spacing": ["error", "never"],
+        "space-in-parens": ["error", "never"],
+        "no-multi-spaces": ["error", {"ignoreEOLComments": true}],
+        "space-before-function-paren": ["error", "never"],
+        "eol-last": ["error", "never"],
+        "no-trailing-spaces": ["error", {"skipBlankLines":false}],
+        "spaced-comment": ["error", "always"]
+    }
+}
