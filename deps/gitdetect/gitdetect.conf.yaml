@@ -1,9 +1,0 @@
-regexprules:
-- target:
-  - \"(?P<target>[A-Za-z0-9\/+]{40})\"
-  - '''(?P<target>[A-Za-z0-9\/+]{40})'''
-  except:
-  - \"preprd([A-Za-z0-9\/+]{34})\"
-  - '''preprd([A-Za-z0-9\/+]{34})'''
-  entropy: 4.5
-  tag: AWS_AND_GWY

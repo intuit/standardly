@@ -1,7 +1,10 @@
 "use strict";
 
 const appRoot = require("app-root-path");
-const script = appRoot.path + "/deps/gitdetect/gitdetect";
+// TODO, once gitdetect is available replace this definition - for now pointing script to a noop
+//const script = appRoot.path + "/deps/gitdetect/gitdetect";
+const script = ":";
+// TODO - move the above script config to a config file
 const gitDetectConfig = appRoot.path + "/deps/gitdetect/gitdetect.conf.yaml";
 const exec = require("child_process").exec;
 const ioUtils = require("../lib/ioUtils");
@@ -21,18 +24,8 @@ let log = logger.createLogger({ name: "std-gov-oos" });
 function runGitDetect(repoOwner, repoName, gitToken) {
     return new Promise(resolve => {
         try {
-            exec(
-                script +
-          " -access-token " +
-          gitToken +
-          " -config " +
-          gitDetectConfig +
-          " -output " +
-          gitDetectResultsDir +
-          " -repo-name " +
-          repoOwner +
-          "/" +
-          repoName,
+            exec(script + " -access-token " + gitToken + " -config " + gitDetectConfig + " -output " +
+                    gitDetectResultsDir + " -repo-name " + repoOwner + "/" + repoName,
                 { stdio: "inherit" },
                 (error, stderr) => {
                     if (error) {
