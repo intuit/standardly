@@ -52,7 +52,7 @@
 Download/clone this repository, to clone:
 
 ```
-git clone https://github.intuit.com/dev-patterns/std-gov-oos.git
+git clone https://github.com/intuit/standardly.git 
 ```
 
 Change your working directory so that you are inside the Standardly repository:
