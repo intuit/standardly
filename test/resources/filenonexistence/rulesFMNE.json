@@ -1,0 +1,11 @@
+[
+    {
+        "FMNE": [
+          {
+            "fileList": ["*.DMG","*.LOG"],
+            "description": "File Must Not Exist",
+            "ruleID": "OOS-0004"
+          }
+        ]
+      }
+]

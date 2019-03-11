@@ -1,0 +1,14 @@
+[
+  {
+    "FMCP": [
+      {
+        "ruleID": "OOS-0016",
+        "pattern": "^(Copyright)(\\s.{1,}\\s){1,}(Company Inc\\.)",
+        "fileNames": ["LICENSE", "README", "DOESNOTEXIST"],
+        "patternType": "term",
+        "description": "company copyright",
+        "excludeDirs":["node_modules",".git"]
+      }
+    ]
+  }
+]

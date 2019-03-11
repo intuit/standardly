@@ -1,0 +1,169 @@
+[
+  {
+    "FME": [
+      {
+        "fileName": "README",
+        "description": "File Must Exist",
+        "ruleID": "OOS-FME-0001",
+        "location": "/",
+        "excludeDirs":["node_modules",".git"]
+      },
+      {
+        "fileName": "LICENSE",
+        "description": "File Must Exist",
+        "ruleID": "OOS-FME-0002",
+        "excludeDirs":["node_modules",".git"]
+      },
+      {
+        "fileName": "CONTRIBUTING",
+        "description": "File Must Exist",
+        "ruleID": "OOS-FME-0003",
+        "excludeDirs":["node_modules",".git"]
+      }
+    ]
+  },
+  {
+    "FMNE": [
+      {
+        "fileList": [".IDEA", ".ECLIPSE","NODE_MODULES","*.DMG", "*.EXE","*.EXEC", "*.CMD", "*.BIN", "*.COM","*.CLASS","*.PYC","*.JAR","*.WAR","*.DS_STORE","*.GIT","*.LOG"],
+        "description": "File Must Not Exist",
+        "ruleID": "OOS-FMNE-0001",
+        "excludeDirs":[".git"]
+      }
+    ]
+  },
+
+  {
+    "FMNCP": [
+      {
+        "pattern": "(^|[\"'({\\[]|\\s)(10(\\.(25[0-5]|2[0-4][0-9]|1[0-9]{1,2}|[0-9]{1,2})){3}|((172\\.(1[6-9]|2[0-9]|3[01]))|192.168)(\\.(25[0-5]|2[0-4][0-9]|1[0-9]{1,2}|[0-9]{1,2})){2})([\"',)\\]}]|$|\\s)",
+        "failureType": "Warning",
+        "flags": { "ignoreCase": "True" },
+        "ruleID": "OOS-FMNCP-0001",
+        "patternType": "ip address",
+        "description": "internal ip address",
+        "excludeDirs":["node_modules",".git"]
+      },
+      {
+        "pattern": "@company.com",
+        "failureType": "Error",
+        "flags": { "ignoreCase": "True" },
+        "ruleID": "OOS-FMNCP-0002",
+        "patternType": "url",
+        "description": "internal urls",
+        "excludeDirs":["node_modules",".git"]
+      },
+      {
+        "pattern": "((?<!developer)(?<!opensource))(\\.company\\.com)",
+        "failureType": "Warning",
+        "flags": { "ignoreCase": "True" },
+        "ruleID": "OOS-FMNCP-0003",
+        "patternType": "url",
+        "description": "internal urls",
+        "excludeDirs":["node_modules",".git"]
+      },
+      {
+        "pattern": "(^|\\s)TestTerm($|\\s)",
+        "failureType": "Warning",
+        "flags": { "ignoreCase": "True" },
+        "ruleID": "OOS-FMNCP-0004",
+        "patternType": "term",
+        "description": "internal term",
+        "excludeDirs":["node_modules",".git"]
+      },
+      {
+        "pattern": "(^|\\s)TEST($|\\s)",
+        "failureType": "Warning",
+        "flags": { "ignoreCase": "False" },
+        "ruleID": "OOS-FMNCP-0005",
+        "patternType": "term",
+        "description": "internal term",
+        "excludeDirs":["node_modules",".git"]
+      },
+      {
+        "pattern": "(^|\\s)ABC($|\\s)",
+        "failureType": "Warning",
+        "flags": { "ignoreCase": "False" },
+        "ruleID": "OOS-FMNCP-0006",
+        "patternType": "term",
+        "description": "internal term",
+        "excludeDirs":["node_modules",".git"]
+      },
+      {
+        "pattern": "(^|\\s)BUNAME($|\\s)",
+        "failureType": "Warning",
+        "flags": { "ignoreCase": "False" },
+        "ruleID": "OOS-FMNCP-0007",
+        "patternType": "term",
+        "description": "internal term",
+        "excludeDirs":["node_modules",".git"]
+      },
+      {
+        "pattern": "(^|\\s)AppName($|\\s)",
+        "failureType": "Warning",
+        "flags": { "ignoreCase": "True" },
+        "ruleID": "OOS-FMNCP-0008",
+        "patternType": "term",
+        "description": "internal term",
+        "excludeDirs":["node_modules",".git"]
+      },
+      {
+        "pattern": "github.company.com",
+        "failureType": "Error",
+        "flags": { "ignoreCase": "True" },
+        "ruleID": "OOS-FMNCP-0009",
+        "patternType": "url",
+        "description": "internal github",
+        "excludeDirs":["node_modules",".git"]
+      },
+      {
+        "pattern": "(^|\\s|\\W)([a-zA-z]{1,})([a-zA-Z0-9._-]{0,})@[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\\.[a-zA-Z]{2,})+$",
+        "failureType": "Warning",
+        "flags": { "ignoreCase": "True" },
+        "ruleID": "OOS-FMNCP-0010",
+        "patternType": "email",
+        "description": "email address",
+        "excludeDirs":["node_modules",".git"]
+      },
+
+      {
+        "pattern": "(^|\\s|\\W)(\\(\\d{3}\\)(-|\\s|)|\\d{3}-)\\d{3}-\\d{4}($|\\s|\\W)",
+        "failureType": "Warning",
+        "flags": { "ignoreCase": "True" },
+        "ruleID": "OOS-FMNCP-0011",
+        "patternType": "phone",
+        "description": "phone number",
+        "excludeDirs":["node_modules",".git"]
+      },
+      {
+        "pattern": "(^|\\s|\\W)(?!219-09-9999|078-05-1120)(?!666|000|9\\d{2})\\d{3}-(?!00)\\d{2}-(?!0{4})\\d{4}($|\\s|\\W)",
+        "failureType": "Warning",
+        "flags": { "ignoreCase": "True" },
+        "ruleID": "OOS-FMNCP-0012",
+        "patternType": "ssn",
+        "description": "SSN",
+        "excludeDirs":["node_modules",".git"]
+      }
+    ]
+  },
+  {
+    "SECRETKEYS": [
+      {
+        "ruleID": "OOS-SKEY-0001",
+        "description": "AWS and internal keys"
+      }
+    ]
+  },
+  {
+    "FMCP": [
+      {
+        "ruleID": "OOS-FMCP-0001",
+        "pattern": "^(Copyright)(\\s.{1,}\\s){1,}(Company Inc\\.)",
+        "fileNames": ["LICENSE", "README"],
+        "patternType": "term",
+        "description": "company copyright",
+        "excludeDirs":["node_modules",".git"]
+      }
+    ]
+  }
+]
