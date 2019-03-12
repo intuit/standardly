@@ -15,20 +15,21 @@ class Testlet {
     }
 
     /**
-   * The individual Testlets must implement this method
-   * The method must return an array of promises and must never throw any exception
-   * All exceptions must be handled in
-   */
+     * The individual Testlets must implement this method
+     * The method must return an array of promises and must never throw any exception
+     * All exceptions must be handled in the method
+     */
     evaluate() {
         log.warn("Ignoring rule type " + this.ruleType);
-        return new Promise(resolve => {
+        const promise = new Promise(resolve => {
             resolve([]);
         });
+        return [promise];
     }
 
     /**
-   * Gets the results of evaluation of this testlet
-   */
+     * Gets the results of evaluation of this testlet
+     */
     getEvaluationResults() {
         let results = [];
         return results;
