@@ -82,10 +82,10 @@ function validate(target, rulesfile, excludeDirs) {
                 const resultsfile = path.join(app.outputdir, "results.csv");
                 return reporter.reportCompliance(results, resultsfile)
                     .then(() => {
-                        log.info("Printed results");
+                        log.info("Printed results into " + resultsfile);
                         resolve(true);
                     }).catch((err) => {
-                        log.err(err);  // eslint-disable-line no-console
+                        log.err(err);
                         reject(err);
                     });
             });

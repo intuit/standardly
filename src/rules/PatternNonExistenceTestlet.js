@@ -40,7 +40,7 @@ class PatternNonExistenceTestlet extends Testlet {
                             }
                         });
                     }
-                    log.info("^^^^^^Reporting from " + this.ruleType + " resolving results " + patternResults);
+                    log.info("Reporting from " + this.ruleType + " resolving results " + patternResults);
                     return resolve(patternResults);
                 }).catch(ex => {
                     const vResult = new EvaluationResult(this.ruleID, ResultEnum.ERROR, "Error evaluating rule ", JSON.stringify(ex));

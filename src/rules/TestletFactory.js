@@ -3,8 +3,8 @@ const FileExistenceTestlet = require("./FileExistenceTestlet");
 const FileNonExistenceTestlet = require("./FileNonExistenceTestlet");
 const PatternNonExistenceTestlet = require("./PatternNonExistenceTestlet");
 const PatternExistenceTestlet = require("./PatternExistenceTestlet");
-const SecretKeysNonExistenceTestlet = require("./SecretKeysNonExistenceTestlet");
 const Testlet = require("./Testlet.js");
+const log = require("../lib/common.js").log;
 
 const RuleTypeEnum = {
     FME: "FME",
@@ -24,6 +24,7 @@ function createTestlet(target, ruleType, ruleset, rulesfile, excludeDirs) {
     } else if (ruleType == RuleTypeEnum.FMCP) {
         return new PatternExistenceTestlet(target, ruleset, rulesfile, excludeDirs);
     } else {
+        log.warn("Unknown rule type " + ruleType + " will be ignored");
         return new Testlet(target, null, ruleset, rulesfile, excludeDirs);
     }
 }
