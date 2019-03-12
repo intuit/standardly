@@ -1,5 +1,5 @@
 "use strict";
-
+const log = require("../lib/common.js").log;
 /**
  * A Testlet evaluates a set of one or more rules of a particular type and captures the results of the evaluation.
  */
@@ -20,7 +20,10 @@ class Testlet {
    * All exceptions must be handled in
    */
     evaluate() {
-        throw new Error("Unable to evaluate - unknown evaluation");
+        log.warn("Ignoring rule type " + this.ruleType);
+        return new Promise(resolve => {
+            resolve([]);
+        });
     }
 
     /**
