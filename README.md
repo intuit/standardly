@@ -4,8 +4,8 @@
   <br><br>
   Enforcing standards, one resource at a time!
 
-<br><br>
-
+<br>
+<p align="center"><a href="https://circleci.com/gh/intuit/standardly"><img src="https://circleci.com/gh/intuit/standardly/tree/master.svg?style=svg&circle-token=b7f18b3f2f9a722cbbdb21ae9d973f38f23bf91e" alt="CircleCI" /></a></p>
 </h3>
 
 ***
