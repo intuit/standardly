@@ -120,3 +120,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Credits
 Figlet - Standardly font
+
