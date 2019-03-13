@@ -28,7 +28,7 @@ class PatternExistenceTestlet extends Testlet {
             let files = rule.fileNames;
             let exclude = (this.excludeDirs ? rule.excludeDirs.concat(this.excludeDirs) : rule.excludeDirs);
             files.forEach(fileName => {
-                promises.push(this.validatePatternExists(rule, fileDict, fileName, exclude));
+                promises.push(this.validatePatternExists(rule, fileDict, fileName, exclude, this.target.localdir));
             });
         });
         log.info("Reporting from " + this.ruleType + " resolving results");
@@ -43,14 +43,16 @@ class PatternExistenceTestlet extends Testlet {
    *  @param {*} excludeDirs
    * @returns {Promise}
    */
-    validatePatternExists(rule, fileDict, fileName, excludeDirs) {
+    validatePatternExists(rule, fileDict, fileName, excludeDirs, rootDir) {
         let vResult;
         return new Promise(resolve => {
             dirWrapper
-                .validateNonEmptyFileExists(fileName, fileDict, excludeDirs)
+                .validateNonEmptyFileExists(fileName, fileDict, excludeDirs, "", rootDir)
                 .then(response => {
                     if (response) {
-                        let filePath = fileDict[fileName];
+                        // TODO: To be updated to check pattern ex. "Copyright" in each file, taking first one for now
+                        // TODO: Each file that is non empty should be checked for pattern.
+                        let filePath = fileDict[fileName][0];
                         ioUtils.readFile(filePath)
                             .then(data => {
                                 let regex = rule.pattern;
