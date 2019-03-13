@@ -25,15 +25,15 @@ class FileExistenceTestlet extends Testlet {
         let fileDict = dirWrapper.getDicts(this.target.localdir, false)[0];
         this.ruleSet.forEach(rule => {
             let exclude = (this.excludeDirs ? rule.excludeDirs.concat(this.excludeDirs) : rule.excludeDirs);
-            promises.push(this.validateNonEmptyFileExists(rule, fileDict, exclude));
+            promises.push(this.validateNonEmptyFileExists(rule, fileDict, exclude, this.target.localdir));
         });
         return promises;
     }
 
-    validateNonEmptyFileExists(rule, fileDict, excludeDirs) {
+    validateNonEmptyFileExists(rule, fileDict, excludeDirs, rootDir) {
         let vResult;
         return new Promise(resolve => {
-            dirWrapper.validateNonEmptyFileExists(rule.fileName, fileDict, excludeDirs)
+            dirWrapper.validateNonEmptyFileExists(rule.fileName, fileDict, excludeDirs, rule.location, rootDir)
                 .then(exists => {
                     const message = (exists ? "Found " : "Not found ") + "non-zero length " +
             rule.fileName + " in " +

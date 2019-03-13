@@ -3,7 +3,6 @@ const FileExistenceTestlet = require("./FileExistenceTestlet");
 const FileNonExistenceTestlet = require("./FileNonExistenceTestlet");
 const PatternNonExistenceTestlet = require("./PatternNonExistenceTestlet");
 const PatternExistenceTestlet = require("./PatternExistenceTestlet");
-const SecretKeysNonExistenceTestlet = require("./SecretKeysNonExistenceTestlet");
 const Testlet = require("./Testlet.js");
 
 const RuleTypeEnum = {

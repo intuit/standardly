@@ -120,8 +120,8 @@ function getFullFileName(dir, fileName) {
  * @param {*} excludeDirs
  * @returns true if non empty file found, false if not
  */
-function validateNonEmptyFileExists(fileName, fileDict, excludeDirs) {
-    return ioUtils.checkNonEmptyFileExists(fileName, fileDict, excludeDirs);
+function validateNonEmptyFileExists(fileName, fileDict, excludeDirs, fileLocation, rootDir) {
+    return ioUtils.checkNonEmptyFileExists(fileName, fileDict, excludeDirs, fileLocation, rootDir);
 }
 
 /**
@@ -159,8 +159,6 @@ function getfileListRecursive(dir, fileList, includeDirs) {
  * @returns dictionary objects
  */
 function getDicts(dir, includeDirs) {
-    // TODO - fileDict should also have a list of files corresponding to each filename key
-    // TODO - we will have to update the FME and FMNE testlets validation for that
     let fileList = getfileListRecursive(dir, [], includeDirs);
     let fileDict = {};
     let fileExtensionDict = {};
@@ -168,16 +166,25 @@ function getDicts(dir, includeDirs) {
         let fileName = path.basename(filePath);
         let index = fileName.indexOf(".");
         if (index > 0 && !fs.lstatSync(filePath).isDirectory()){
-            fileDict[fileName.split(".")[0].toUpperCase()] = filePath;
+            let file = fileName.split(".")[0].toUpperCase();
+            if (file in fileDict) {
+                fileDict[file].push(filePath);
+            } else {
+                fileDict[file] = [filePath];
+            }
             let fileExtension = fileName.substring(index).toUpperCase();
             if (fileExtension in fileExtensionDict) {
                 fileExtensionDict[fileExtension].push(filePath);
             } else {
                 fileExtensionDict[fileExtension] = [filePath];
             }
-
         } else {
-            fileDict[fileName.toUpperCase()] = filePath;
+            let file = fileName.toUpperCase();
+            if (file in fileDict) {
+                fileDict[file].push(filePath);
+            } else {
+                fileDict[file] = [filePath];
+            }
         }
     });
     return [fileDict, fileExtensionDict];

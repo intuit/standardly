@@ -12,12 +12,14 @@
         "fileName": "LICENSE",
         "description": "File Must Exist",
         "ruleID": "OOS-FME-0002",
+        "location": "/",
         "excludeDirs":["node_modules",".git"]
       },
       {
         "fileName": "CONTRIBUTING",
         "description": "File Must Exist",
         "ruleID": "OOS-FME-0003",
+        "location": "/",
         "excludeDirs":["node_modules",".git"]
       }
     ]
