@@ -9,7 +9,7 @@ const dirWrapper = require("../src/lib/localDirWrapper.js");
 
 const fileDict = dirWrapper.getDicts(appRoot.path, false)[0];
 
-describe("jsonToCsv", function() {
+describe("FME multiple files", function() {
     it("FME File dictionary must contain a list of files", () => {
         expect(fileDict["README"]).to.be.array();
         expect(fileDict["README"]).length.above(1);
