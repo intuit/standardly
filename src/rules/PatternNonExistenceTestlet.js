@@ -8,24 +8,23 @@ const log = require("../lib/common.js").log;
 class PatternNonExistenceTestlet extends Testlet {
 
     /**
-   * Creates the PatternNonExistenceTestlet
-   * @param {*} target - the target object, for example a directory where this rule is executed
-   * @param {*} ruleSet
-   * @param {*} ruleFileName
-   */
+     * Creates the PatternNonExistenceTestlet
+     * @param {*} target - the target object, for example a directory where this rule is executed
+     * @param {*} ruleSet
+     * @param {*} ruleFileName
+     */
     constructor(target, ruleSet, ruleFileName, excludeDirs) {
         super(target, "FMNCP", ruleSet, ruleFileName, "", excludeDirs);
     }
 
     /**
-   * Evaluates the ruleSet
-   * Returns an array of promises that resolve to a TestletOutput object
-   */
+     * Evaluates the ruleSet
+     * Returns an array of promises that resolve to a TestletOutput object
+     */
     evaluate() {
         return new Promise(resolve => {
             let patternResults = [];
-            patternDetector
-                .processPatterns(this.target.localdir, this.ruleFileName, this.excludeDirs)
+            patternDetector.processPatterns(this.target.localdir, this.ruleFileName, this.excludeDirs)
                 .then(obj => {
                     if ((Object.keys(obj).length === 1) && (obj[0]["evaluationStatus"] === "Pass")) {
                         const vResult = new EvaluationResult("", obj[0]["evaluationStatus"], obj[0]["evaluationMessage"] + " in " + this.target);
@@ -51,11 +50,11 @@ class PatternNonExistenceTestlet extends Testlet {
     }
 
     /**
- * Evaluates if patterns exist for different ruleID's
- * @param {*} jsonObj
- * @param {*} ruleID
- * @returns {Promise}
- */
+     * Evaluates if patterns exist for different ruleID's
+     * @param {*} jsonObj
+     * @param {*} ruleID
+     * @returns {Promise}
+     */
     validatePatternExists(jsonObj, ruleID) {
         let vResult;
         try {
@@ -72,7 +71,7 @@ class PatternNonExistenceTestlet extends Testlet {
                     });
                 });
                 vResult = new EvaluationResult(ruleID, ResultEnum.FAIL,
-                    "Possible "+rules[0].description+" found", rules[0].evaluationStatus, details);
+                    "Possible " + rules[0].description + " found", rules[0].evaluationStatus, details);
                 return vResult;
             }
         } catch (exception) {
