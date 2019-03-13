@@ -49,7 +49,7 @@ class RulesParser {
                             return resolve([]);
                         });
                 }).catch(exception => {
-                    log.error(JSON.stringify(exception));
+                    log.error("Error validating the rules " + exception);
                     return resolve([]);
                 });
         });

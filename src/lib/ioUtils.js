@@ -17,7 +17,7 @@ function writeFile(fileName, data) {
                 log.error(err);
                 resolve(false);
             } else {
-                log.info("Data is written to " + fileName);
+                log.debug("Data is written to " + fileName);
                 resolve(true);
             }
         });
