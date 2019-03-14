@@ -1,0 +1,10 @@
+[
+    {
+        "UNK": [
+          {
+            "dummy" : "This rule must be ignored",
+            "ruleID": "UNK-9999"
+          }
+        ]
+      }
+]
