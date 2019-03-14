@@ -1,7 +1,7 @@
 "use strict";
 const chai = require("chai");
 const expect = chai.expect;
-const iou = require("../src/lib/ioUtils.js");
+const iou = require("../../src/lib/ioUtils.js");
 
 describe("Test File Exists", function() {
     it("LICENSE.md must exist", () => {

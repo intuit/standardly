@@ -1,7 +1,7 @@
 "use strict";
 const chai = require("chai");
 const expect = chai.expect;
-const fswrapper = require("../src/lib/localDirWrapper.js");
+const fswrapper = require("../../src/lib/localDirWrapper.js");
 
 describe("Test file Dictionary", function() {
     it("file dict must include this file", () => {

@@ -1,7 +1,7 @@
 "use strict";
 const chai = require("chai");
 const expect = chai.expect;
-const utils = require("../src/lib/utils.js");
+const utils = require("../../src/lib/utils.js");
 
 describe("jsonToCsv", function() {
     it("Json must convert to csv", () => {

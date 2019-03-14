@@ -1,9 +1,9 @@
 "use strict";
 const chai = require("chai");
 const expect = chai.expect;
-const TestletFactory = require("../src/rules/TestletFactory.js");
-const TestLib = require("./TestLib.js");
-const appPath = require("../src/lib/common.js").appPath;
+const TestletFactory = require("../../src/rules/TestletFactory.js");
+const TestLib = require("../resources/TestLib.js");
+const appPath = require("../../src/lib/common.js").appPath;
 const rulesJson = appPath + "/test/resources/unknownrt/rulesUNK.json";
 
 describe("Test handling of unknown ruletype", function() {

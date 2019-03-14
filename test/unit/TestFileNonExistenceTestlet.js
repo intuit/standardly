@@ -1,8 +1,8 @@
 "use strict";
 const chai = require("chai");
 const expect = chai.expect;
-const FileNonExistenceTestlet = require("../src/rules/FileNonExistenceTestlet.js");
-const TestLib = require("./TestLib.js");
+const FileNonExistenceTestlet = require("../../src/rules/FileNonExistenceTestlet.js");
+const TestLib = require("../resources/TestLib.js");
 const appRoot = require("app-root-path");
 const rulesJson =appRoot.path + "/test/resources/filenonexistence/rulesFMNE.json";
 
