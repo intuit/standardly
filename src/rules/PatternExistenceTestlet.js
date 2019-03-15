@@ -43,11 +43,11 @@ class PatternExistenceTestlet extends Testlet {
    *  @param {*} excludeDirs
    * @returns {Promise}
    */
-    validatePatternExists(rule, fileDict, fileName, excludeDirs, rootDir) {
+    validatePatternExists(rule, fileDict, fileName, excludeDirs, localdir) {
         let vResult;
         return new Promise(resolve => {
             dirWrapper
-                .validateNonEmptyFileExists(fileName, fileDict, excludeDirs, "", rootDir)
+                .validateNonEmptyFileExists(fileName, fileDict, excludeDirs, "", localdir)
                 .then(response => {
                     if (response) {
                         // TODO: To be updated to check pattern ex. "Copyright" in each file, taking first one for now

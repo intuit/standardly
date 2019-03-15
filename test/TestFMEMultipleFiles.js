@@ -16,8 +16,8 @@ describe("Test multiple files for FME", function() {
     });
 
     it("Checking non empty file exits in a location", () => {
-        ioutils.checkNonEmptyFileExists("README", fileDict, "", "/", appRoot.path).then(res =>{
-            expect(res).to.be.eql.to(true);
+        return ioutils.checkNonEmptyFileExists("README", fileDict, "", "/", appRoot.path).then(res =>{
+            expect(res).to.be.eql(true);
         });
     });
 

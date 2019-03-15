@@ -68,22 +68,24 @@ function readFile(filePath, defaultEncoding) {
  * @param {} fileLocation
  * @param {} rootDir
  */
-function checkNonEmptyFileExists(fileName, fileDict, excludeDirs, fileLocation, rootDir) {
+function checkNonEmptyFileExists(fileName, fileDict, excludeDirs, location, localdir) {
     return new Promise(resolve => {
         let exists = (fileName in fileDict);
         if (exists) {
+            // Checks if excludeDirs are given in the input rule and the file getting checked lies in the excluded Dirs
+            // TODO: Handle multiple files in the checkExcludedDir method by creating 
             if (excludeDirs && checkExcludedDir(fileDict[fileName], excludeDirs)) {
                 exists = false;
             } else {
-                if (fileLocation && fileLocation.length >= 1) {
+                if (location && location.length >= 1) {
                     for (let i = 0; i < fileDict[fileName].length; i++){
-                        let filePath = fileDict[fileName][i];
-                        let file = filePath.slice(0, filePath.lastIndexOf("/"));
-                        if (rootDir.substr(-1) === "/"){
-                            rootDir = rootDir.slice(0, -1);
+                        let file = fileDict[fileName][i];
+                        let filedir = file.slice(0, file.lastIndexOf("/"));
+                        if (localdir.substr(-1) === "/"){
+                            localdir = localdir.slice(0, -1);
                         }
-                        if ((rootDir.toUpperCase() == file.toUpperCase() && fileLocation=="/") || (rootDir+"/"+fileLocation).toUpperCase() == file.toUpperCase()) {
-                            checkNonEmptyFile(filePath).then(res => {
+                        if ((localdir.toUpperCase() == filedir.toUpperCase() && location=="/") || (localdir+"/"+location).toUpperCase() == filedir.toUpperCase()) {
+                            return checkNonEmptyFile(file).then(res => {
                                 return resolve(res);
                             });
                         }
@@ -111,10 +113,13 @@ function checkAnyFileNonEmpty(fileList) {
         results.push(checkNonEmptyFile(filePath));
     });
     return Promise.all(results).then(results => {
-        results.forEach(res => {
-            exists = exists || res;
-        });
-        return exists;
+        for (let i = 0; i < results.length; i++) {
+            exists = exists || results[i];
+            if (exists) {
+                return exists;
+            }
+        }
+        return false;
     });
 }
 

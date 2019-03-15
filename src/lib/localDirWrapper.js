@@ -120,8 +120,8 @@ function getFullFileName(dir, fileName) {
  * @param {*} excludeDirs
  * @returns true if non empty file found, false if not
  */
-function validateNonEmptyFileExists(fileName, fileDict, excludeDirs, fileLocation, rootDir) {
-    return ioUtils.checkNonEmptyFileExists(fileName, fileDict, excludeDirs, fileLocation, rootDir);
+function validateNonEmptyFileExists(fileName, fileDict, excludeDirs, location, localdir) {
+    return ioUtils.checkNonEmptyFileExists(fileName, fileDict, excludeDirs, location, localdir);
 }
 
 /**

@@ -5,21 +5,18 @@
         "fileName": "README",
         "description": "A Readme file must exist",
         "ruleID": "OOS-FME-0001",
-        "location": "/",
-        "excludeDirs":["node_modules",".git"]
+        "location": "/"
       },
       {
         "fileName": "LICENSE",
         "description": "A License file must exist",
         "ruleID": "OOS-FME-0002",
-        "location": "/",
         "excludeDirs":["node_modules",".git"]
       },
       {
         "fileName": "CONTRIBUTING",
         "description": "A file describing how to contribute to the repo must exist",
         "ruleID": "OOS-FME-0003",
-        "location": "/",
         "excludeDirs":["node_modules",".git"]
       }
     ]
