@@ -73,7 +73,7 @@ function checkNonEmptyFileExists(fileName, fileDict, excludeDirs, location, loca
         let exists = (fileName in fileDict);
         if (exists) {
             // Checks if excludeDirs are given in the input rule and the file getting checked lies in the excluded Dirs
-            // TODO: Handle multiple files in the checkExcludedDir method by creating 
+            // TODO: Handle multiple files in the checkExcludedDir method by creating local copy of list of files from dictionary
             if (excludeDirs && checkExcludedDir(fileDict[fileName], excludeDirs)) {
                 exists = false;
             } else {
