@@ -25,12 +25,12 @@ describe("Test exclude dir is considered", ()=> {
         expect(res).to.be.an.array().that.is.empty;
     });
     it("Some files must be returned that are not in excluded dir", ()=> {
-        let res = iou.checkExcludedDir(["edible/fruit/tree/apple", "edible/fruit/bush/pineapple", "edible/fruit/pine"], ["FRUIT"]);
-        expect(res).to.be.an.array().that.is.empty;
+        let res = iou.checkExcludedDir(["edible/fruit/tree/apple", "edible/fruit/bush/pineapple", "edible/fruit/pine"], ["PINE"]);
+        expect(res).to.be.have.length(2);
     });
     it("file without dir name should not match", ()=> {
         let res = iou.checkExcludedDir(["pine"], ["FRUIT", "PINE"]);
-        expect(res).to.have.length(1);
+        expect(res).to.be.have.length(1);
     });
 
 });
