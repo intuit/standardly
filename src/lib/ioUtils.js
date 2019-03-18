@@ -106,7 +106,7 @@ function checkNonEmptyFileExists(fileName, fileDict, excludeDirs, location, loca
 /**
  * Checks if atleast one of the files in the list is non-empty
  * @param {} fileList - input file list
- * @returns true as soon as atleast one file in the list has length > 0 else @returns false
+ * @returns true as soon as one file in the list has length > 0 else @returns false
  */
 function checkAnyFileNonEmpty(fileList) {
     let results = [];
