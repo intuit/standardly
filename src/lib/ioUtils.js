@@ -65,8 +65,9 @@ function readFile(filePath, defaultEncoding) {
  * @param {} fileName
  * @param {} fileDict
  * @param {} excludeDirs
- * @param {} fileLocation
- * @param {} rootDir
+ * @param {} location
+ * @param {} localdir
+ * @returns true if a non-empty file exists with given fileName, and location or excludeDirs, else @returns false
  */
 function checkNonEmptyFileExists(fileName, fileDict, excludeDirs, location, localdir) {
     return new Promise(resolve => {
@@ -105,6 +106,7 @@ function checkNonEmptyFileExists(fileName, fileDict, excludeDirs, location, loca
 /**
  * Checks if atleast one of the files in the list is non-empty
  * @param {} fileList - input file list
+ * @returns true as soon as atleast one file in the list has length > 0 else @returns false
  */
 function checkAnyFileNonEmpty(fileList) {
     let results = [];
@@ -126,6 +128,7 @@ function checkAnyFileNonEmpty(fileList) {
 /**
  * Checks if a file is non-empty
  * @param {} file - input file
+ *  @returns true if the given file has length > 0 else @returns false
  */
 function checkNonEmptyFile(file){
     return new Promise(resolve => {
