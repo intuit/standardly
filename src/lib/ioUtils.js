@@ -64,25 +64,83 @@ function readFile(filePath, defaultEncoding) {
  * Checks if file name exists in fileDict and the file is nonempty
  * @param {} fileName
  * @param {} fileDict
- * @param {*} includeDirs
+ * @param {} excludeDirs
+ * @param {} location
+ * @param {} localdir
+ * @returns true if a non-empty file exists with given fileName, and location or excludeDirs, else @returns false
  */
-function checkNonEmptyFileExists(fileName, fileDict, excludeDirs) {
-    return new Promise((resolve, reject) => {
+function checkNonEmptyFileExists(fileName, fileDict, excludeDirs, location, localdir) {
+    return new Promise(resolve => {
         let exists = (fileName in fileDict);
         if (exists) {
+            // Checks if excludeDirs are given in the input rule and the file getting checked lies in the excluded Dirs
+            // TODO: Handle multiple files in the checkExcludedDir method by creating local copy of list of files from dictionary
             if (excludeDirs && checkExcludedDir(fileDict[fileName], excludeDirs)) {
                 exists = false;
             } else {
-                fs.readFile(fileDict[fileName], {encoding: "utf-8"}, function(err, data) {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        exists = (data.length > 0);
+                if (location && location.length >= 1) {
+                    for (let i = 0; i < fileDict[fileName].length; i++){
+                        let file = fileDict[fileName][i];
+                        let filedir = file.slice(0, file.lastIndexOf("/"));
+                        if (localdir.substr(-1) === "/"){
+                            localdir = localdir.slice(0, -1);
+                        }
+                        if ((localdir.toUpperCase() == filedir.toUpperCase() && location=="/") || (localdir+"/"+location).toUpperCase() == filedir.toUpperCase()) {
+                            return checkNonEmptyFile(file).then(res => {
+                                return resolve(res);
+                            });
+                        }
                     }
-                });
+                    resolve(false);
+                } else {
+                    let res = checkAnyFileNonEmpty(fileDict[fileName]);
+                    return resolve(res);
+                }
+            }
+        } else {
+            resolve(exists);
+        }
+    });
+}
+
+/**
+ * Checks if atleast one of the files in the list is non-empty
+ * @param {} fileList - input file list
+ * @returns true as soon as one file in the list has length > 0 else @returns false
+ */
+function checkAnyFileNonEmpty(fileList) {
+    let results = [];
+    let exists = false;
+    fileList.forEach(filePath => {
+        results.push(checkNonEmptyFile(filePath));
+    });
+    return Promise.all(results).then(results => {
+        for (let i = 0; i < results.length; i++) {
+            exists = exists || results[i];
+            if (exists) {
+                return exists;
             }
         }
-        resolve(exists);
+        return false;
+    });
+}
+
+/**
+ * Checks if a file is non-empty
+ * @param {} file - input file
+ *  @returns true if the given file has length > 0 else @returns false
+ */
+function checkNonEmptyFile(file){
+    return new Promise(resolve => {
+        fs.readFile(file, {encoding: "utf-8"}, function(err, data) {
+            if (err){
+                resolve(false);
+            }else if (data.length > 0) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+        });
     });
 }
 
@@ -92,17 +150,16 @@ function checkNonEmptyFileExists(fileName, fileDict, excludeDirs) {
  * @param {} excludeDirs - the directory list to be excluded in scans/pattern matches
  */
 function checkExcludedDir(fileList, excludeDirs) {
-    // TODO - will not be needed when we change both dictionaries to map to a list of files
-    let fileArray = Array.isArray(fileList) ? fileList : [fileList];
     for (let i = 0; i < excludeDirs.length; i++) {
-        for (let j = 0; j < fileArray.length; j++) {
-            if (fileArray[j].includes("/") && fileArray[j].toUpperCase().split("/").includes(excludeDirs[i].toUpperCase())) {
+        for (let j = 0; j < fileList.length; j++) {
+            if (fileList[j].includes("/") && fileList[j].toUpperCase().split("/").includes(excludeDirs[i].toUpperCase())) {
                 return true;
             }
         }
     }
     return false;
 }
+
 /*
  * Creates the folder that is passed in
  */
