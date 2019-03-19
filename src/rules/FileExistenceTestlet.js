@@ -26,10 +26,10 @@ class FileExistenceTestlet extends Testlet {
         this.ruleSet.forEach(rule => {
             let exclude = [];
             if (this.excludeDirs){
-                exclude.concat(this.excludeDirs)
+                exclude.concat(this.excludeDirs);
             }
             if("excludeDirs" in Object.keys(rule) && rule.excludeDirs){
-                exclude.concat(rule.excludeDirs)
+                exclude.concat(rule.excludeDirs);
             }
             promises.push(this.validateNonEmptyFileExists(rule, fileDict, exclude, this.target.localdir));
         });

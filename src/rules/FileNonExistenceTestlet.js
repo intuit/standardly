@@ -46,7 +46,7 @@ class FileNonExistenceTestlet extends Testlet {
             try {
                 let files = (fileName in dict) ? dict[fileName] : [];
                 if (excludeDirs) {
-                    files = ioUtils.checkExcludedDir(files, excludeDirs);
+                    files = ioUtils.getUnexcludedDirs(files, excludeDirs);
                 }
                 const message = (files.length > 0 ? "Found " : "Not found ") +
                     fileName + " file in " +

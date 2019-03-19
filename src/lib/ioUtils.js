@@ -75,11 +75,11 @@ function checkNonEmptyFileExists(fileName, fileDict, excludeDirs, location, loca
         if (exists) {
             let files = fileDict[fileName];
             if (excludeDirs) {
-                files = checkExcludedDir(files, excludeDirs);
+                files = getUnexcludedDirs(files, excludeDirs);
                 if (!files){
                     return resolve(false);
                 }
-            }  
+            }
             if (location && location.length >= 1) {
                 for (let i = 0; i < files.length; i++){
                     let file = files[i];
@@ -152,7 +152,7 @@ function checkNonEmptyFile(file){
  * @param {} excludeDirs - the directory list to be excluded in scans/pattern matches
  * @returns outputArray which is a filtered list of files that do not lie in the excluded dirs
  */
-function checkExcludedDir(fileList, excludeDirs) {
+function getUnexcludedDirs(fileList, excludeDirs) {
     let fileArray = Array.isArray(fileList) ? fileList : [fileList];
     let outputArray = [];
     for (let i = 0; i < fileArray.length; i++) {
@@ -186,6 +186,6 @@ module.exports = {
     writeFile: writeFile,
     checkFileExists: checkFileExists,
     readFile: readFile,
-    checkExcludedDir: checkExcludedDir,
+    getUnexcludedDirs: getUnexcludedDirs,
     mkDirIfNotExists: mkDirIfNotExists
 };
