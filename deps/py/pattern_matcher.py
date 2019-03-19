@@ -49,7 +49,7 @@ def match_patterns(row, text, filename, input_patterns, output, excludeDirs):
             if ("/" in filename and (d.upper() in filename.upper().split("/")) or d.upper() == filename.upper()):
                 exclude = True
                 break
-        if exclude: break
+        if exclude: continue
         if p["flags"]["ignoreCase"] == "True":
             regex = re.compile(p["pattern"], re.I)
         else:

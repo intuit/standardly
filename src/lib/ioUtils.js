@@ -73,30 +73,32 @@ function checkNonEmptyFileExists(fileName, fileDict, excludeDirs, location, loca
     return new Promise(resolve => {
         let exists = (fileName in fileDict);
         if (exists) {
-            // Checks if excludeDirs are given in the input rule and the file getting checked lies in the excluded Dirs
-            // TODO: Handle multiple files in the checkExcludedDir method by creating local copy of list of files from dictionary
-            if (excludeDirs && checkExcludedDir(fileDict[fileName], excludeDirs)) {
-                exists = false;
-            } else {
-                if (location && location.length >= 1) {
-                    for (let i = 0; i < fileDict[fileName].length; i++){
-                        let file = fileDict[fileName][i];
-                        let filedir = file.slice(0, file.lastIndexOf("/"));
-                        if (localdir.substr(-1) === "/"){
-                            localdir = localdir.slice(0, -1);
-                        }
-                        if ((localdir.toUpperCase() == filedir.toUpperCase() && location=="/") || (localdir+"/"+location).toUpperCase() == filedir.toUpperCase()) {
-                            return checkNonEmptyFile(file).then(res => {
-                                return resolve(res);
-                            });
-                        }
-                    }
-                    resolve(false);
-                } else {
-                    let res = checkAnyFileNonEmpty(fileDict[fileName]);
-                    return resolve(res);
+            let files = fileDict[fileName];
+            if (excludeDirs) {
+                files = getUnexcludedDirs(files, excludeDirs);
+                if (!files){
+                    return resolve(false);
                 }
             }
+            if (location && location.length >= 1) {
+                for (let i = 0; i < files.length; i++){
+                    let file = files[i];
+                    let filedir = file.slice(0, file.lastIndexOf("/"));
+                    if (localdir.substr(-1) === "/"){
+                        localdir = localdir.slice(0, -1);
+                    }
+                    if ((localdir.toUpperCase() == filedir.toUpperCase() && location=="/") || (localdir+"/"+location).toUpperCase() == filedir.toUpperCase()) {
+                        return checkNonEmptyFile(file).then(res => {
+                            return resolve(res);
+                        });
+                    }
+                }
+                resolve(false);
+            } else {
+                let res = checkAnyFileNonEmpty(fileDict[fileName]);
+                return resolve(res);
+            }
+
         } else {
             resolve(exists);
         }
@@ -128,7 +130,7 @@ function checkAnyFileNonEmpty(fileList) {
 /**
  * Checks if a file is non-empty
  * @param {} file - input file
- *  @returns true if the given file has length > 0 else @returns false
+ * @returns true if the given file has length > 0 else @returns false
  */
 function checkNonEmptyFile(file){
     return new Promise(resolve => {
@@ -148,16 +150,24 @@ function checkNonEmptyFile(file){
  * Checks if file belongs to an excluded directory
  * @param {} fileList - the list of files to check in the excludeDirs
  * @param {} excludeDirs - the directory list to be excluded in scans/pattern matches
+ * @returns outputArray which is a filtered list of files that do not lie in the excluded dirs
  */
-function checkExcludedDir(fileList, excludeDirs) {
-    for (let i = 0; i < excludeDirs.length; i++) {
-        for (let j = 0; j < fileList.length; j++) {
-            if (fileList[j].includes("/") && fileList[j].toUpperCase().split("/").includes(excludeDirs[i].toUpperCase())) {
-                return true;
+function getUnexcludedDirs(fileList, excludeDirs) {
+    let fileArray = Array.isArray(fileList) ? fileList : [fileList];
+    let outputArray = [];
+    for (let i = 0; i < fileArray.length; i++) {
+        let found = false;
+        for (let j = 0; j < excludeDirs.length; j++) {
+            if (fileArray[i].includes("/") && fileArray[i].toUpperCase().split("/").includes(excludeDirs[j].toUpperCase())) {
+                found = true;
+                break;
             }
         }
+        if (!found){
+            outputArray.push(fileArray[i]);
+        }
     }
-    return false;
+    return outputArray;
 }
 
 /*
@@ -176,6 +186,6 @@ module.exports = {
     writeFile: writeFile,
     checkFileExists: checkFileExists,
     readFile: readFile,
-    checkExcludedDir: checkExcludedDir,
+    getUnexcludedDirs: getUnexcludedDirs,
     mkDirIfNotExists: mkDirIfNotExists
 };

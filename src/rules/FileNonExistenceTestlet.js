@@ -44,16 +44,16 @@ class FileNonExistenceTestlet extends Testlet {
         let vResult;
         return new Promise(resolve => {
             try {
-                let exists = (fileName in dict) ? true : false;
-                if (exists && excludeDirs && ioUtils.checkExcludedDir(dict[fileName], excludeDirs)) {
-                    exists = false;
+                let files = (fileName in dict) ? dict[fileName] : [];
+                if (excludeDirs) {
+                    files = ioUtils.getUnexcludedDirs(files, excludeDirs);
                 }
-                const message = (exists ? "Found " : "Not found ") +
-                fileName + " file in " +
-                (this.target.giturl ? this.target.giturl : this.target.localdir);
-                const result = exists ? ResultEnum.FAIL : ResultEnum.PASS;
-                const files = exists? " Found: " + dict[fileName] : "";
-                vResult = new EvaluationResult(rule.ruleID, result, message+files);
+                const message = (files.length > 0 ? "Found " : "Not found ") +
+                    fileName + " file in " +
+                    (this.target.giturl ? this.target.giturl : this.target.localdir);
+                const result = files.length > 0 ? ResultEnum.FAIL : ResultEnum.PASS;
+                const fileList = files.length > 0 ? " Found: " + files : "";
+                vResult = new EvaluationResult(rule.ruleID, result, message + fileList);
                 resolve(vResult);
             } catch(exception) {
                 log.warn("From Testlet for " + this.ruleType + " error evaluating rule");
