@@ -5,20 +5,14 @@ const fse = require("fs-extra");
 
 describe("Tool report is consistent", function() {
     it("Report output is consistent", () => {
-        const toolcmd= "node src/app.js --giturl https://github.com/intuit/saloon.git  -r sample/rules.json"
-        shelljs.exec(toolcmd, {silent:true}, ()=> {
-           var sampleResult;
-            return fse.readFile('test/resources/sample_results.csv')
-                .then((sample)=>{
-                    sampleResult = sample;
-                    return(fse.readFile('reports/results.csv'))
-                })
-                .then((actualResult)=>{ 
-                    var comparison = Buffer.compare(sampleResult, actualResult);
-                    console.log(comparison);
-                    return expect(comparison).to.eql(1);
-                })
-                .catch((err)=>{throw err;})
-          });   
-    });
+        return new Promise(resolve => {
+            const toolCmd = 'node src/app.js --giturl https://github.com/intuit/saloon.git -r sample/rules.json'
+            shelljs.exec(toolCmd, resolve)
+          })
+          .then(() => Promise.all([
+            fse.readFile('test/resources/sample_results.csv'),
+            fse.readFile('reports/results.csv')
+          ]))
+          .then(([sample, actual]) => expect(Buffer.compare(sample, actual)).to.be.eql(0))
+    }).timeout(4000);
 });
