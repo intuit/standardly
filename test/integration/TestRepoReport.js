@@ -16,7 +16,7 @@ describe("Tool report is consistent", function() {
                 .then((actualResult)=>{ 
                     var comparison = Buffer.compare(sampleResult, actualResult);
                     console.log(comparison);
-                    return expect(comparison).to.eql(0);
+                    return expect(comparison).to.eql(1);
                 })
                 .catch((err)=>{throw err;})
           });   
