@@ -103,10 +103,16 @@ node src/app.js -g https://github.com/argoproj/argo -r /Users/standardlyRocks/De
 When this command is executed, a results.csv file will be created in the ```/Users/standardlyRocks/Desktop/reports``` directory
 
 ## Running Tests
-To run the tests in the Standardly repo, in the base directory of the repo run:
+### Unit tests
+To run the unit tests in the Standardly repo, in the base directory of the repo run:
 
 ```
 npm test
+```
+### Integration tests
+
+```
+npm run test:integration
 ```
 
 ## Extending Standardly To Support New Rules
