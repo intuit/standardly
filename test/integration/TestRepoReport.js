@@ -6,7 +6,8 @@ const fse = require("fs-extra");
 describe("Tool report is consistent", function() {
     it("Report output is consistent", () => {
         return new Promise(resolve => {
-            const toolCmd = 'node src/app.js --giturl https://github.com/intuit/saloon.git -r sample/rules.json'
+            //TODO: change repo to test standarly once its plublic
+            const toolCmd = 'node src/app.js --giturl https://github.com/intuit/saloon.git -r sample/rules.json';
             shelljs.exec(toolCmd, resolve)
           })
           .then(() => Promise.all([
