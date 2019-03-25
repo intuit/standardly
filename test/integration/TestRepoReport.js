@@ -6,7 +6,7 @@ const fse = require("fs-extra");
 describe("Tool report is consistent", function() {
     it("Report output is consistent", () => {
         return new Promise(resolve => {
-            //TODO: change repo to test standarly once its plublic
+            //TODO: change repo to test standarly once it is public
             const toolCmd = 'node src/app.js --giturl https://github.com/intuit/saloon.git -r sample/rules.json';
             shelljs.exec(toolCmd, resolve)
           })
