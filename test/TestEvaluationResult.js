@@ -10,11 +10,11 @@ describe("Test Evaulation Result", function() {
 
     describe("Test getAsString method", function() {
         it("Gets the object as a string when the details message exists", () => {
-            expect(erOneDetArray.getAsString()).to.be.equal("ruleID,result,message,error,file : app.js; col : 10; line : 10\n");
+            expect(erOneDetArray.getAsString()).to.be.equal("ruleID,error,file : app.js; col : 10; line : 10\n");
         });
 
         it("Gets the object as a string when the details message does not exist", () => {
-            expect(erNoDetArray.getAsString()).to.be.equal("OOS-FMNCP-0010,Fail,Possible internal github found,Error");
+            expect(erNoDetArray.getAsString()).to.be.equal("OOS-FMNCP-0010,Error");
         });
 
     });
@@ -98,7 +98,7 @@ describe("Test Evaulation Result", function() {
         });
 
         it("Checks if entire block is in new string method", () => {
-            expect(erNoDetArray.serialize(erNoDetArray, false)).to.equal("OOS-FMNCP-0010,Fail,Possible internal github found,Error");
+            expect(erNoDetArray.serialize(erNoDetArray, false)).to.equal("OOS-FMNCP-0010,Error");
         });
     });
 });
