@@ -5,8 +5,7 @@
         "fileName": "README",
         "description": "Readme file",
         "ruleID": "OOS-FME-0001",
-        "location": "/",
-        "excludeDirs":["node_modules",".git"]
+        "location": "/"
       },
       {
         "fileName": "LICENSE",
