@@ -87,7 +87,7 @@
         "pattern": "^(Copyright)(\\s.{1,}\\s){1,}(Company Inc\\.)",
         "fileNames": ["LICENSE", "README"],
         "patternType": "term",
-        "description": "Company copyright must be found in specific files",
+        "description": "Company copyright",
         "excludeDirs":["node_modules",".git"]
       }
     ]

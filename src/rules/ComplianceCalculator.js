@@ -83,7 +83,7 @@ class ComplianceCalculator {
             return item != "detail"; // Details are shown below the statistics section
         });
         // TODO Testlets need to be modified to include rule description. For now adding it manually
-        fields.push("description");
+        // fields.push("description");
         return fields;
     }
 
