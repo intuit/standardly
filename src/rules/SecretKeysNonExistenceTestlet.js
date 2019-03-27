@@ -10,19 +10,19 @@ const log = require("../lib/common.js").log;
 
 class SecretKeysNonExistenceTestlet extends Testlet {
     /**
-   * Creates the FileExistenceTestlet
-   * @param {*} target - the target object, for example a directory where this rule is executed
-   * @param {*} ruleSet
-   * @param {*} ruleJson
-   */
+     * Creates the FileExistenceTestlet
+     * @param {*} target - the target object, for example a directory where this rule is executed
+     * @param {*} ruleSet
+     * @param {*} ruleJson
+     */
     constructor(gitUrl, ruleSet) {
         super("", "SECRETKEYS", ruleSet, "", gitUrl);
     }
 
     /**
-   * Evaluates the ruleSet
-   * Returns an array of promises that resolve to a TestletOutput object
-   */
+     * Evaluates the ruleSet
+     * Returns an array of promises that resolve to a TestletOutput object
+     */
     evaluate() {
         let promises = [];
         let gitToken = process.env.gitToken;
@@ -32,6 +32,12 @@ class SecretKeysNonExistenceTestlet extends Testlet {
         return promises;
     }
 
+    /**
+     * Validates the defects file from the secrets scan
+     * @param {*} rule
+     * @param {*} repoUrl
+     * @param {*} gitToken
+     */
     validateDefectsFile(rule, repoUrl, gitToken) {
         return new Promise(resolve => {
             let vResult = [];

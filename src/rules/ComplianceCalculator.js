@@ -3,6 +3,9 @@ const utils = require("../lib/utils");
 let logger = require("bunyan");
 let log = logger.createLogger({ name: "std-gov-oos" });
 
+/**
+ * The compliance calculator
+ */
 class ComplianceCalculator {
 
     constructor(evaluationResults) {
