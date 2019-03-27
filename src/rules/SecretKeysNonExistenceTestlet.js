@@ -43,12 +43,8 @@ class SecretKeysNonExistenceTestlet extends Testlet {
             let vResult = [];
 
             if (!repoUrl || !gitToken) {
-                vResult = new EvaluationResult(
-                    rule.ruleID,
-                    ResultEnum.ERROR,
-                    "Error finding secret keys",
-                    JSON.stringify("Please check the github url and token provided.")
-                );
+                vResult = new EvaluationResult(rule.ruleID, ResultEnum.ERROR, "Error finding secret keys",
+                    JSON.stringify("Please check the github url and token provided."));
                 log.info("Reporting from " + this.ruleType + " no git info -  returning");
                 return resolve(vResult);
             }
@@ -65,32 +61,19 @@ class SecretKeysNonExistenceTestlet extends Testlet {
                     if (data) {
                         let obj = yaml.load(data);
                         if (Object.keys(obj["repos"]).length === 0) {
-                            vResult = new EvaluationResult(
-                                rule.ruleID,
-                                ResultEnum.PASS,
-                                "Not found secret keys in " + repoUrl
-                            );
+                            vResult = new EvaluationResult(rule.ruleID, ResultEnum.PASS,
+                                "Not found secret keys in " + repoUrl);
                         } else {
-                            vResult = new EvaluationResult(
-                                rule.ruleID,
-                                ResultEnum.FAIL,
-                                "Found Secret keys in " +
-                  this.target +
-                  ". Please look at the report for details: " +
-                  gitDetectResults
-                            );
+                            vResult = new EvaluationResult(rule.ruleID, ResultEnum.FAIL,
+                                "Found Secret keys in " + this.target + ". Check details: " + gitDetectResults);
                         }
                         log.info("Reporting from " + this.ruleType + " resolving results");
                         resolve(vResult);
                     }
                 })
                 .catch(exception => {
-                    vResult = new EvaluationResult(
-                        rule.ruleID,
-                        ResultEnum.ERROR,
-                        "Error reading defect yaml",
-                        JSON.stringify(exception)
-                    );
+                    vResult = new EvaluationResult(rule.ruleID, ResultEnum.ERROR,
+                        "Error reading defect yaml", JSON.stringify(exception));
                     log.info("Reporting from " + this.ruleType + " resolving errors");
                     resolve(vResult);
                 });

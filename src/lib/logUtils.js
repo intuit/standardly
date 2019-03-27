@@ -8,15 +8,7 @@ const colors = require("colors");
 /* eslint-disable no-console */
 function clIntro() {
     const figlet = require("figlet");
-    console.log(
-        colors.green(
-            figlet.textSync("Standardly", {
-                font: "big",
-                horizontalLayout: "default",
-                verticalLayout: "default"
-            })
-        )
-    );
+    console.log(colors.green(figlet.textSync("Standardly", {font: "big"})));
     console.log(colors.bgGreen("DIY tool for Standards Governance\n"));
 }
 /* eslint-enable no-console */

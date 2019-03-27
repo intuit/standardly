@@ -28,8 +28,7 @@ function runPy(repo, rules, excludeDirs) {
                     resolve(false);
                 }
                 resolve(true);
-            }
-            );
+            });
         } catch (ex) {
             log.error(ex);
             resolve(false);
