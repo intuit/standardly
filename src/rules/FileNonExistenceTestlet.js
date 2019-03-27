@@ -40,6 +40,13 @@ class FileNonExistenceTestlet extends Testlet {
         return promises;
     }
 
+    /**
+     * Validates if file exists
+     * @param {*} rule - the rule
+     * @param {*} fileName - the file to validate
+     * @param {*} dict - the dictionary of filenames
+     * @param {*} excludeDirs
+     */
     validateFileExists(rule, fileName, dict, excludeDirs) {
         let vResult;
         return new Promise(resolve => {

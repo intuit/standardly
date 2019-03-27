@@ -2,6 +2,9 @@
 const detailFieldName = "detail";
 const detailFields = ["ruleID", "error", "detail"];
 
+/**
+ * The data structure representing the Evaluation Result
+ */
 class EvaluationResult {
     constructor(ruleID, result, message, error, detail) {
         this.ruleID = ruleID;
@@ -95,7 +98,9 @@ class EvaluationResult {
     }
 
 }
-
+/**
+ * Possible values of the actual result
+ */
 EvaluationResult.ResultEnum = {
     PASS: "Pass",
     WARN: "Warning",
