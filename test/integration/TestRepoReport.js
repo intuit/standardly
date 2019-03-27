@@ -1,7 +1,7 @@
 const chai = require("chai");
 const expect = chai.expect;
 const shelljs = require("shelljs");
-const fse = require("fs-extra");
+const csv = require("csvtojson");
 
 describe("Tool report is consistent", function() {
     it("Report output is consistent", () => {
@@ -11,9 +11,17 @@ describe("Tool report is consistent", function() {
             shelljs.exec(toolCmd, resolve)
           })
           .then(() => Promise.all([
-            fse.readFile('test/resources/sample_results.csv'),
-            fse.readFile('reports/results.csv')
+            csv().fromFile('test/resources/sample_results.csv'),
+            csv().fromFile('reports/results.csv')
           ]))
-          .then(([sample, actual]) => expect(Buffer.compare(sample, actual)).to.be.eql(0))
+          .then(([sample, actual]) => {
+            //Assert that both files have the same object count  
+            expect(Object.keys(sample).length).to.be.eql(Object.keys(actual).length);
+                for(obj in sample) {
+                    //Assert that for each object,the result is the same
+                    expect(sample[obj].result).to.be.eql(actual[obj].result,"obj #"+obj+" with rule "+ sample[obj].ruleID + " has a different result" );       
+                }
+
+          })
     }).timeout(4000);
 });
