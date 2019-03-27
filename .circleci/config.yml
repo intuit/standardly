@@ -27,4 +27,3 @@ jobs:
 
       # run tests!
       - run: npm test
-      - run: npm run test:integration

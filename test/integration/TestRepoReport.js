@@ -18,7 +18,6 @@ describe("Tool report is consistent", function() {
           ]))
           .then(([sample, actual]) => {
             //Assert that both files have the same object count
-            console.log(appPath + '/test/resources/sample_results.csv');
             expect(Object.keys(sample).length).to.be.eql(Object.keys(actual).length);
                 for(obj in sample) {
                     //Assert that for each object,the result is the same
