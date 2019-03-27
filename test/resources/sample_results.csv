@@ -20,8 +20,8 @@
 "OOS-FMNE-0001","Pass","Not found .LOG file in https://github.com/intuit/saloon.git",,
 "OOS-FMNCP-0011","Fail","Possible phone number found","Warning",
 "OOS-FMNCP-0012","Fail","Possible PII information such as ssn must not be found found","Warning",
-"OOS-FMCP-0001","Fail","Company copyright must be found in specific files not found in LICENSE file : /Users/rmontes/Documents/devrepos/standardly/tmp/saloon/LICENSE",,
-"OOS-FMCP-0001","Fail","Company copyright must be found in specific files not found in README file : /Users/rmontes/Documents/devrepos/standardly/tmp/saloon/README.md",,
+"OOS-FMCP-0001","Fail","Company copyright must be found in specific files not found in LICENSE file : /Users/abcxyz/Documents/devrepos/standardly/tmp/saloon/LICENSE",,
+"OOS-FMCP-0001","Fail","Company copyright must be found in specific files not found in README file : /Users/abcxyz/Documents/devrepos/standardly/tmp/saloon/README.md",,
 
 #Passed --> 18 (78.26%)
 #Failed --> 5 (21.74%)
@@ -48,13 +48,13 @@ OOS-FMNE-0001,Pass,Not found .WAR file in https://github.com/intuit/saloon.git,
 OOS-FMNE-0001,Pass,Not found .DS_STORE file in https://github.com/intuit/saloon.git,
 OOS-FMNE-0001,Pass,Not found .GIT file in https://github.com/intuit/saloon.git,
 OOS-FMNE-0001,Pass,Not found .LOG file in https://github.com/intuit/saloon.git,
-OOS-FMNCP-0011,Fail,Possible phone number found,Warning,fileName : /Users/rmontes/Documents/devrepos/standardly/tmp/saloon/examples/standard/personas/homer_simpson.json; line : 8; col : 22
-OOS-FMNCP-0011,Fail,Possible phone number found,Warning,fileName : /Users/rmontes/Documents/devrepos/standardly/tmp/saloon/src/__tests__/__snapshots__/main.js.md; line : 124; col : 18
+OOS-FMNCP-0011,Fail,Possible phone number found,Warning,fileName : /Users/abcxyz/Documents/devrepos/standardly/tmp/saloon/examples/standard/personas/homer_simpson.json; line : 8; col : 22
+OOS-FMNCP-0011,Fail,Possible phone number found,Warning,fileName : /Users/abcxyz/Documents/devrepos/standardly/tmp/saloon/src/__tests__/__snapshots__/main.js.md; line : 124; col : 18
 
-OOS-FMNCP-0012,Fail,Possible PII information such as ssn must not be found found,Warning,fileName : /Users/rmontes/Documents/devrepos/standardly/tmp/saloon/examples/standard/personas/homer_simpson.json; line : 24; col : 36
-OOS-FMNCP-0012,Fail,Possible PII information such as ssn must not be found found,Warning,fileName : /Users/rmontes/Documents/devrepos/standardly/tmp/saloon/examples/standard/personas/homer_simpson.json; line : 43; col : 36
-OOS-FMNCP-0012,Fail,Possible PII information such as ssn must not be found found,Warning,fileName : /Users/rmontes/Documents/devrepos/standardly/tmp/saloon/src/__tests__/__snapshots__/main.js.md; line : 69; col : 24
-OOS-FMNCP-0012,Fail,Possible PII information such as ssn must not be found found,Warning,fileName : /Users/rmontes/Documents/devrepos/standardly/tmp/saloon/src/__tests__/__snapshots__/main.js.md; line : 86; col : 24
+OOS-FMNCP-0012,Fail,Possible PII information such as ssn must not be found found,Warning,fileName : /Users/abcxyz/Documents/devrepos/standardly/tmp/saloon/examples/standard/personas/homer_simpson.json; line : 24; col : 36
+OOS-FMNCP-0012,Fail,Possible PII information such as ssn must not be found found,Warning,fileName : /Users/abcxyz/Documents/devrepos/standardly/tmp/saloon/examples/standard/personas/homer_simpson.json; line : 43; col : 36
+OOS-FMNCP-0012,Fail,Possible PII information such as ssn must not be found found,Warning,fileName : /Users/abcxyz/Documents/devrepos/standardly/tmp/saloon/src/__tests__/__snapshots__/main.js.md; line : 69; col : 24
+OOS-FMNCP-0012,Fail,Possible PII information such as ssn must not be found found,Warning,fileName : /Users/abcxyz/Documents/devrepos/standardly/tmp/saloon/src/__tests__/__snapshots__/main.js.md; line : 86; col : 24
 
-OOS-FMCP-0001,Fail,Company copyright must be found in specific files not found in LICENSE file : /Users/rmontes/Documents/devrepos/standardly/tmp/saloon/LICENSE,
-OOS-FMCP-0001,Fail,Company copyright must be found in specific files not found in README file : /Users/rmontes/Documents/devrepos/standardly/tmp/saloon/README.md,
+OOS-FMCP-0001,Fail,Company copyright must be found in specific files not found in LICENSE file : /Users/abcxyz/Documents/devrepos/standardly/tmp/saloon/LICENSE,
+OOS-FMCP-0001,Fail,Company copyright must be found in specific files not found in README file : /Users/abcxyz/Documents/devrepos/standardly/tmp/saloon/README.md,
