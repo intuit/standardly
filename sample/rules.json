@@ -3,19 +3,19 @@
     "FME": [
       {
         "fileName": "README",
-        "description": "A Readme file must exist",
+        "description": "Readme file",
         "ruleID": "OOS-FME-0001",
         "location": "/"
       },
       {
         "fileName": "LICENSE",
-        "description": "A License file must exist",
+        "description": "License file",
         "ruleID": "OOS-FME-0002",
         "excludeDirs":["node_modules",".git"]
       },
       {
         "fileName": "CONTRIBUTING",
-        "description": "A file describing how to contribute to the repo must exist",
+        "description": "Github 'Contributing' file",
         "ruleID": "OOS-FME-0003",
         "excludeDirs":["node_modules",".git"]
       }
@@ -25,7 +25,7 @@
     "FMNE": [
       {
         "fileList": [".IDEA", ".ECLIPSE","NODE_MODULES","*.DMG", "*.EXE","*.EXEC", "*.CMD", "*.BIN", "*.COM","*.CLASS","*.PYC","*.JAR","*.WAR","*.DS_STORE","*.GIT","*.LOG"],
-        "description": "Project files, executables, compiled binaries must not exist",
+        "description": "Project files, executables, compiled binaries",
         "ruleID": "OOS-FMNE-0001",
         "excludeDirs":[".git"]
       }
@@ -39,7 +39,7 @@
         "flags": { "ignoreCase": "True" },
         "ruleID": "OOS-FMNCP-0001",
         "patternType": "ip address",
-        "description": "Patterns pertaining to internal ip address(es) should not be found",
+        "description": "internal ip address(es)",
         "excludeDirs":["node_modules",".git"]
       },
       {
@@ -48,7 +48,7 @@
         "flags": { "ignoreCase": "True" },
         "ruleID": "OOS-FMNCP-0004",
         "patternType": "term",
-        "description": "Specified terms must not be found",
+        "description": "restricted term",
         "excludeDirs":["node_modules",".git"]
       },
        {
@@ -75,7 +75,7 @@
         "flags": { "ignoreCase": "True" },
         "ruleID": "OOS-FMNCP-0012",
         "patternType": "ssn",
-        "description": "PII information such as ssn must not be found",
+        "description": "PII information such as SSN",
         "excludeDirs":["node_modules",".git"]
       }
     ]
@@ -87,7 +87,7 @@
         "pattern": "^(Copyright)(\\s.{1,}\\s){1,}(Company Inc\\.)",
         "fileNames": ["LICENSE", "README"],
         "patternType": "term",
-        "description": "Company copyright must be found in specific files",
+        "description": "Company copyright",
         "excludeDirs":["node_modules",".git"]
       }
     ]
