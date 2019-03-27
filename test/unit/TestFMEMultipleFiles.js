@@ -4,8 +4,8 @@ const assertArrays = require("chai-arrays");
 chai.use(assertArrays);
 const expect = chai.expect;
 const appRoot = require("app-root-path");
-const ioutils = require("../src/lib/ioUtils.js");
-const dirWrapper = require("../src/lib/localDirWrapper.js");
+const ioutils = require("../../src/lib/ioUtils.js");
+const dirWrapper = require("../../src/lib/localDirWrapper.js");
 
 const fileDict = dirWrapper.getDicts(appRoot.path, false)[0];
 

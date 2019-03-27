@@ -1,6 +1,6 @@
 const chai = require("chai");
 const expect = chai.expect;
-const patternDetector = require("../src/rules/patternDetector.js");
+const patternDetector = require("../../src/rules/patternDetector.js");
 const appRoot = require("app-root-path");
 const rulesFile = appRoot.path + "/test/resources/patternnonexistence/rulesFMNCP.json";
 

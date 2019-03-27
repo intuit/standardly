@@ -1,9 +1,9 @@
 "use strict";
 const chai = require("chai");
 const expect = chai.expect;
-const PatternExistenceTestlet = require("../src/rules/PatternExistenceTestlet.js");
-const TestLib = require("./TestLib.js");
-const appPath = require("../src/lib/common.js").appPath;
+const PatternExistenceTestlet = require("../../src/rules/PatternExistenceTestlet.js");
+const TestLib = require("../resources/TestLib.js");
+const appPath = require("../../src/lib/common.js").appPath;
 const rulesJson = appPath + "/test/resources/patternexistence/rulesFMCP.json";
 
 describe("Test Pattern Existence Testlet", function() {

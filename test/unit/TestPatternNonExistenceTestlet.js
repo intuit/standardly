@@ -1,8 +1,8 @@
 "use strict";
 const chai = require("chai");
 const expect = chai.expect;
-const PatternNonExistenceTestlet = require("../src/rules/PatternNonExistenceTestlet.js");
-const TestLib = require("./TestLib.js");
+const PatternNonExistenceTestlet = require("../../src/rules/PatternNonExistenceTestlet.js");
+const TestLib = require("../resources/TestLib.js");
 const appRoot = require("app-root-path");
 const rulesJson =appRoot.path + "/test/resources/patternnonexistence/rulesFMNCP.json";
 
