@@ -2,6 +2,8 @@ const chai = require("chai");
 const expect = chai.expect;
 const shelljs = require("shelljs");
 const csv = require("csvtojson");
+const common = require("../../src/lib/common");
+const appPath = common.appPath;
 
 describe("Tool report is consistent", function() {
     it("Report output is consistent", () => {
@@ -11,11 +13,11 @@ describe("Tool report is consistent", function() {
             shelljs.exec(toolCmd, resolve)
           })
           .then(() => Promise.all([
-            csv().fromFile('test/resources/sample_results.csv'),
-            csv().fromFile('reports/results.csv')
+            csv().fromFile(appPath + '/test/resources/sample_results.csv'),
+            csv().fromFile(appPath + '/reports/results.csv')
           ]))
           .then(([sample, actual]) => {
-            //Assert that both files have the same object count  
+            //Assert that both files have the same object count
             expect(Object.keys(sample).length).to.be.eql(Object.keys(actual).length);
                 for(obj in sample) {
                     //Assert that for each object,the result is the same
