@@ -83,13 +83,13 @@ class PatternExistenceTestlet extends Testlet {
     }
 
     /**
-   * Checks if given regex pattern exists in a given file
-   * @param {*} rule
-   * @param {*} fileName
-   * @param {*} filePath
-   *  @param {*} regex
-   * @returns {Promise}
-   */
+     * Checks if given regex pattern exists in a given file
+     * @param {*} rule
+     * @param {*} fileName
+     * @param {*} filePath
+     * @param {*} regex
+     * @returns {Promise}
+     */
     checkFilePattern(rule, fileName, filePath, regex) {
         return new Promise(resolve => {
             let found;
