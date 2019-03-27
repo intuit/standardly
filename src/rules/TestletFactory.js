@@ -6,6 +6,9 @@ const PatternExistenceTestlet = require("./PatternExistenceTestlet");
 const Testlet = require("./Testlet.js");
 const log = require("../lib/common.js").log;
 
+/**
+ * Types of rules
+ */
 const RuleTypeEnum = {
     FME: "FME",
     FMNE: "FMNE",
@@ -14,6 +17,14 @@ const RuleTypeEnum = {
     SECRETKEYS: "SECRETKEYS"
 };
 
+/**
+ * Creates the testlet based on the ruleType
+ * @param {*} target
+ * @param {*} ruleType
+ * @param {*} ruleset
+ * @param {*} rulesfile
+ * @param {*} excludeDirs
+ */
 function createTestlet(target, ruleType, ruleset, rulesfile, excludeDirs) {
     if (ruleType == RuleTypeEnum.FME) {
         return new FileExistenceTestlet(target, ruleset, rulesfile, excludeDirs);

@@ -14,7 +14,9 @@ const header = require("./lib/logUtils").clIntro;
 const consoleErr = require("./lib/logUtils").consoleErr;
 const mkDirIfNotExists = require("./lib/ioUtils").mkDirIfNotExists;
 
-
+/**
+ * The main work horse for command line running
+ */
 function doRun() {
     header();
     let target = {};
@@ -73,6 +75,12 @@ function doRun() {
     }
 }
 
+/**
+ * Validate the target against the given set of rules
+ * @param {*} target
+ * @param {*} rulesfile
+ * @param {*} excludeDirs any directories that may need to be excluded from the scan
+ */
 function validate(target, rulesfile, excludeDirs) {
     return new Promise((resolve, reject) => {
         const rp = new RulesParser(target, rulesfile, excludeDirs);
@@ -92,6 +100,9 @@ function validate(target, rulesfile, excludeDirs) {
     });
 }
 
+/**
+ * Sets the command line options
+ */
 function setCLOptions() {
     app.option("-l, --localdir <dir>", "Local Directory to scan. Only one of Local Directory or Git URL must be provided.");
     app.option("-g, --giturl <url>", "Git URL to scan. Only one of Local Directory or Git URL must be provided.");
@@ -100,6 +111,10 @@ function setCLOptions() {
     app.option("-e, --excludeDirs <file>", "Comma seprated list of directories to be excluded from scanning");
 }
 
+/**
+ * Displays help
+ * @param {*} exit - flag to indicate if we should exit - typically when not all mandatory inputs are given
+ */
 function displayHelp(exit) {
     app.outputHelp();
     if (exit) {

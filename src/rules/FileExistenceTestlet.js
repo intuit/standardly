@@ -6,20 +6,20 @@ const ResultEnum = EvaluationResult.ResultEnum;
 
 class FileExistenceTestlet extends Testlet {
     /**
-   * Creates the FileExistenceTestlet
-   * @param {*} target - the target object, for example a directory where this rule is executed
-   * @param {*} ruleSet
-   * @param {*} ruleJson
-   * @param {*} excludeDirs
-   */
+     * Creates the FileExistenceTestlet
+     * @param {*} target - the target object, for example a directory where this rule is executed
+     * @param {*} ruleSet
+     * @param {*} ruleJson
+     * @param {*} excludeDirs
+     */
     constructor(target, ruleSet, ruleJson, excludeDirs) {
         super(target, "FME", ruleSet, ruleJson, "", excludeDirs);
     }
 
     /**
-   * Evaluates the ruleSet
-   * Returns an array of promises that resolve to a TestletOutput object
-   */
+     * Evaluates the ruleSet
+     * Returns an array of promises that resolve to a TestletOutput object
+     */
     evaluate() {
         let promises = [];
         let fileDict = dirWrapper.getDicts(this.target.localdir, false)[0];
@@ -36,6 +36,13 @@ class FileExistenceTestlet extends Testlet {
         return promises;
     }
 
+    /**
+     * Validates if non-empty file exists
+     * @param {*} rule
+     * @param {*} fileDict
+     * @param {*} excludeDirs
+     * @param {*} localdir
+     */
     validateNonEmptyFileExists(rule, fileDict, excludeDirs, localdir) {
         let vResult;
         return new Promise(resolve => {

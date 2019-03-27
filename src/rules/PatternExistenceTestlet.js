@@ -17,10 +17,11 @@ class PatternExistenceTestlet extends Testlet {
         super(target, "FMCP", ruleSet, ruleFileName, "", excludeDirs);
     }
 
+
     /**
-   * Evaluates the ruleSet
-   * Returns an array of promises that resolve to a TestletOutput object
-   */
+     * Evaluates the ruleSet
+     * Returns an array of promises that resolve to a TestletOutput object
+     */
     evaluate() {
         let promises = [];
         let fileDict = dirWrapper.getDicts(this.target.localdir, false)[0];
@@ -36,13 +37,13 @@ class PatternExistenceTestlet extends Testlet {
     }
 
     /**
-   * Evaluates if patterns exist for different ruleID's
-   * @param {*} rule
-   * @param {*} fileDict
-   * @param {*} fileName
-   *  @param {*} excludeDirs
-   * @returns {Promise}
-   */
+     * Evaluates if patterns exist for different ruleID's
+     * @param {*} rule
+     * @param {*} fileDict
+     * @param {*} fileName
+     *  @param {*} excludeDirs
+     * @returns {Promise}
+     */
     validatePatternExists(rule, fileDict, fileName, excludeDirs) {
         let vResult;
         let regex = rule.pattern;

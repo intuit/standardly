@@ -4,7 +4,11 @@ const EvaluationResult = require("./EvaluationResult");
 const ComplianceCalculator = require("./ComplianceCalculator");
 const detailFields = "ruleID,error,detail\n";
 
-
+/**
+ * Reports compliance
+ * @param {*} finalResults
+ * @param {*} resultsfile
+ */
 function reportCompliance(finalResults, resultsfile) {
     return new Promise(resolve => {
         let finalResultsString = "";
@@ -26,9 +30,9 @@ function reportCompliance(finalResults, resultsfile) {
 }
 
 /**
-   * Serializes rule evaulation results
-   * @param {*} result
-   */
+ * Serializes rule evaulation results
+ * @param {*} result
+ */
 function serializeEvaluationResults(result) {
     let str = "";
     if(result instanceof EvaluationResult) {
@@ -40,6 +44,7 @@ function serializeEvaluationResults(result) {
     }
     return str;
 }
+
 module.exports = {
     reportCompliance : reportCompliance
 };
