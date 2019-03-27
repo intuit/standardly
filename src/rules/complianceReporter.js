@@ -2,20 +2,19 @@
 const ioutil = require("../lib/ioUtils");
 const EvaluationResult = require("./EvaluationResult");
 const ComplianceCalculator = require("./ComplianceCalculator");
+const detailFields = "ruleID,error,detail\n";
 
 
 function reportCompliance(finalResults, resultsfile) {
     return new Promise(resolve => {
         let finalResultsString = "";
-        let fields = "";
         finalResults.forEach(result => {
             finalResultsString += serializeEvaluationResults(result);
-            fields = getFieldsAsString(result);
         });
         if (finalResults.length > 0) {
             new ComplianceCalculator(finalResults).getComplianceSummary()
                 .then(statistics => {
-                    ioutil.writeFile(resultsfile, statistics + "\n\n" + fields + finalResultsString)
+                    ioutil.writeFile(resultsfile, statistics + "\n\n" + detailFields + finalResultsString)
                         .then((result)=>{
                             resolve(result);
                         });
@@ -41,14 +40,6 @@ function serializeEvaluationResults(result) {
     }
     return str;
 }
-
-function getFieldsAsString(result) {
-    if (result instanceof EvaluationResult) {
-        return result.getFieldsAsString() + "\n";
-    }
-    return "ruleID,result,message,error,detail\n";
-}
-
 module.exports = {
     reportCompliance : reportCompliance
 };

@@ -85,7 +85,7 @@ function validate(target, rulesfile, excludeDirs) {
                         log.info("Printed results into " + resultsfile);
                         resolve(true);
                     }).catch((err) => {
-                        log.err(err);
+                        log.error(err);
                         reject(err);
                     });
             });

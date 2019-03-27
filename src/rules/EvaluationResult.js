@@ -1,5 +1,6 @@
 "use strict";
 const detailFieldName = "detail";
+const detailFields = ["ruleID", "error", "detail"];
 
 class EvaluationResult {
     constructor(ruleID, result, message, error, detail) {
@@ -61,7 +62,12 @@ class EvaluationResult {
     serialize(object, includeKeyName) {
         let str = "";
         let separator = "";
-        let array = Object.keys(object);
+        let array;
+        if (object instanceof EvaluationResult) {
+            array = detailFields;
+        } else {
+            array = Object.keys(object);
+        }
         array.forEach(element => {
             if(includeKeyName) {
                 str += separator + element + " : " + object[element];
