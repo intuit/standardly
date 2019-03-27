@@ -80,6 +80,13 @@ or
 node src/app.js -l <directory_location> -r <fullpath_of_rules_file>
 ```
 
+or if running in a bash shell, simply run
+
+```
+./standardly -l <directory_location> -r <fullpath_of_rules_file>
+```
+
+
 To scan a github repo, run:
 
 ```
