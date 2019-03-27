@@ -66,7 +66,7 @@ class PatternExistenceTestlet extends Testlet {
                                     found = lines[i].trim().match(regex);
                                 }
 
-                                const message = rule.description + (found ? " found in " : " not found in ")+ fileName + " file : " + filePath;
+                                const message = rule.description + (found ? " found in " : " not found in ") + fileName + " file : " + filePath;
                                 const result = found ? ResultEnum.PASS : ResultEnum.FAIL;
                                 vResult = new EvaluationResult(rule.ruleID, result, message);
                                 resolve(vResult);
