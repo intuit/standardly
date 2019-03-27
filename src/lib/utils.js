@@ -20,5 +20,3 @@ function convertJsonToCsv(fields, data) {
 module.exports = {
     convertJsonToCsv: convertJsonToCsv
 };
-
-// test();
