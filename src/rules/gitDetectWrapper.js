@@ -41,8 +41,7 @@ function runGitDetect(repoOwner, repoName, gitToken) {
                                 resolve("[]");
                             }
                         });
-                }
-            );
+                });
         } catch (ex) {
             log.error(ex);
             resolve("[]");

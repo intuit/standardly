@@ -26,13 +26,8 @@ class RulesParser {
                     ruleSets.forEach(ruleSet => {
                         let ruleType = Object.keys(ruleSet);
                         log.info("parsing " + ruleType);
-                        let testlet = TestletFactory.createTestlet(
-                            this.target,
-                            ruleType,
-                            ruleSet[ruleType],
-                            this.rulesfile,
-                            this.excludeDirs
-                        );
+                        let testlet = TestletFactory.createTestlet(this.target, ruleType, ruleSet[ruleType],
+                            this.rulesfile, this.excludeDirs);
                         let temp = testlet.evaluate();
                         evalPromises = evalPromises.concat(temp);
                     });
