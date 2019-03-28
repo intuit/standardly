@@ -1,7 +1,7 @@
 "use strict";
 const chai = require("chai");
 const expect = chai.expect;
-const EvaluationResult = require("../src/rules/EvaluationResult");
+const EvaluationResult = require("../../src/rules/EvaluationResult");
 
 const erOneDetArray = new EvaluationResult("ruleID", "result", "message", "error", [{ "file": "app.js", "col": "10", "line": "10" }]);
 const erNoDetArray = new EvaluationResult("OOS-FMNCP-0010", "Fail", "Possible internal github found", "Error", []);

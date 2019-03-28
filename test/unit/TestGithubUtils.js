@@ -1,9 +1,9 @@
 const chai = require("chai");
 const expect = chai.expect;
-const gitHubUtils = require("../src/lib/gitHubUtils.js");
+const gitHubUtils = require("../../src/lib/gitHubUtils.js");
 const path = require("path");
 const shelljs = require("shelljs");
-const common = require("../src/lib/common");
+const common = require("../../src/lib/common");
 const appPath = common.appPath;
 const tmpDir = path.join(appPath, "/tmp");
 const fse = require("fs-extra");

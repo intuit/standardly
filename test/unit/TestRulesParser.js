@@ -1,9 +1,9 @@
 "use strict";
 const chai = require("chai");
 const expect = chai.expect;
-const RulesParser = require("../src/rules/RulesParser.js");
+const RulesParser = require("../../src/rules/RulesParser.js");
 const path = require("path");
-const common = require("../src/lib/common.js");
+const common = require("../../src/lib/common.js");
 
 describe("Test the Rules Parser", () => {
     const rulesFile = path.join(common.appPath, "/test/resources/rulesparser/sample.json");

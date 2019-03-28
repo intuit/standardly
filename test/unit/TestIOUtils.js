@@ -1,7 +1,7 @@
 "use strict";
 const chai = require("chai");
 const expect = chai.expect;
-const iou = require("../src/lib/ioUtils.js");
+const iou = require("../../src/lib/ioUtils.js");
 const assertArrays = require("chai-arrays");
 chai.use(assertArrays);
 
