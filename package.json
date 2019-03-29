@@ -47,7 +47,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npx eslint --fix . && npm test && npm run test:integration"
+      "pre-commit": "node_modules/.bin/eslint --fix . && npm test && npm run test:integration"
     }
   }
 }
