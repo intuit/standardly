@@ -24,7 +24,7 @@ class Testlet {
         const promise = new Promise(resolve => {
             resolve([]);
         });
-          return [promise];
+        return [promise];
     }
 
     /**
