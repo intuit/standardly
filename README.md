@@ -1,6 +1,6 @@
 <h3 align="center">
   <br>
-  <img src="./imgs/StandardlyTempLogo.png" alt="StandardlyLogo" width="600" height="250">
+  <img src="./imgs/StandardlyLogo.svg" alt="StandardlyLogo" width="250" height="250">
   <br><br>
   Enforcing standards, one resource at a time!
 
@@ -130,6 +130,3 @@ See [PATTERN-MATCHING.md](deps/py/PATTERN-MATCHING.md)
 
 ## How To Contribute
 See [CONTRIBUTING.md](CONTRIBUTING.md) 
-
-## Credits
-Figlet - Standardly font
