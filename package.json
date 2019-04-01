@@ -21,7 +21,7 @@
     "compliance"
   ],
   "author": "",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "dependencies": {
     "app-root-path": "2.1.0",
     "bunyan": "1.8.12",
