@@ -1,6 +1,6 @@
 {
   "name": "standardly",
-  "version": "0.1.0",
+  "version": "0.1.1-canary.efca8e3",
   "description": "DIY framework for Standards Governance",
   "main": "index.js",
   "directories": {
@@ -9,7 +9,8 @@
   "scripts": {
     "test": "nyc --reporter=cobertura mocha './test/unit/*.js'",
     "test:integration": "mocha './test/integration/*.js'",
-    "lint": "node_modules/.bin/eslint ."
+    "lint": "node_modules/.bin/eslint .",
+    "release": "auto shipit"
   },
   "repository": {
     "type": "git",
