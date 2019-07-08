@@ -10,4 +10,5 @@ cobertura-coverage.xml
 .nyc_output/
 gitdetect.log
 tmp/
+.env
 package-lock.json
