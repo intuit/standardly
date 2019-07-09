@@ -1,6 +1,6 @@
 {
   "name": "standardly",
-  "version": "0.1.1-canary.efca8e3",
+  "version": "0.1.0",
   "description": "DIY framework for Standards Governance",
   "main": "index.js",
   "directories": {
@@ -9,12 +9,11 @@
   "scripts": {
     "test": "nyc --reporter=cobertura mocha './test/unit/*.js'",
     "test:integration": "mocha './test/integration/*.js'",
-    "lint": "node_modules/.bin/eslint .",
-    "release": "auto shipit"
+    "lint": "node_modules/.bin/eslint ."
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jlu17/standardly.git"
+    "url": "https://github.com/intuit/standardly.git"
   },
   "keywords": [
     "standards",
@@ -36,7 +35,6 @@
     "request": "2.88.0"
   },
   "devDependencies": {
-    "auto": "^7.2.0",
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
     "csvtojson": "2.0.8",
