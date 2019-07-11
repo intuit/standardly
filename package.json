@@ -49,5 +49,8 @@
     "hooks": {
       "pre-commit": "node_modules/.bin/eslint --fix . && npm test && npm run test:integration"
     }
+  },
+  "engines": {
+    "node": ">=10.16.0"
   }
 }

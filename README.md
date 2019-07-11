@@ -8,6 +8,8 @@
 <p align="center"><a href="https://circleci.com/gh/intuit/standardly"><img src="https://circleci.com/gh/intuit/standardly/tree/master.svg?style=svg&circle-token=b7f18b3f2f9a722cbbdb21ae9d973f38f23bf91e" alt="CircleCI" /></a></p>
 </h3>
 
+![npm](https://img.shields.io/badge/node-v10.16.0-blue.svg)
+
 ***
 
 <div align="center">
@@ -43,7 +45,7 @@
 <p>Standardly was designed in mind to work on a number of different resources: code, databases, documents, you name it! For example, for a code resource, rules can revolve around coding standards. For a database resource, rules might be that certain types of data must be encrypted, or data older than a particular date should be archived. Currently, Standardly only supports resources that are files; files that are on your filesystem or on a github repo. Okay enough chit chat, let's get to analysing your resource!</p>
 
 ## Prerequisites For Installing
-* node v11.0.0
+* node 10.16.0
 * npm
 * git
 * python
