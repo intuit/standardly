@@ -21,7 +21,7 @@ describe("Test GitHubUtils Clone ", function() {
                 });
         });
     });
-    
+
     it("Fails when repo url is not correct", () => {
         return gitHubUtils.cloneGitRepo("https://github.com/intuit/saloon.gitXXX", tmpDir)
             .catch((response) => {
