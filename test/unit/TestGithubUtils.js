@@ -20,13 +20,14 @@ describe("Test GitHubUtils Clone ", function() {
                     shelljs.rm("-rf", tmpDir);
                 });
         });
-    });
+    }).timeout(5000);
 
     it("Fails when repo url is not correct", () => {
+        setTimeout(() => {}, 2000);
         return gitHubUtils.cloneGitRepo("https://github.com/intuit/saloon.gitXXX", tmpDir)
             .catch((response) => {
                 expect(response).to.have.string("Error cloning repository");
             });
-    }).timeout(10000);
+    }).timeout(2500);
 
 });
