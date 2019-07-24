@@ -11,7 +11,7 @@ describe("Test the Rules Parser", () => {
     // TODO Initialize when bugs are fixed for exludedDirs
     const excludeDirs = "";
     it("Validate the rules in the given array", () => {
-        const target = {localdir :  path.join(common.appPath, "/test/resources/"),
+        const target = {localdir :  path.join(common.appPath, "/test/resources"),
             gitUrl : "https://github.com/intuit/saloon"};
 
         const rp = new RulesParser(target, rulesFile, outputdir, excludeDirs);
@@ -38,7 +38,7 @@ describe("Test the sample rules", () => {
     const outputdir = path.join(common.appPath, "reports");
     const excludeDirs = "";
     it("validate that rules in the sample pass through rulesparser fine", () => {
-        const target = {localdir :  path.join(common.appPath, "/test/resources/"),
+        const target = {localdir :  path.join(common.appPath, "/test/resources"),
             gitUrl : "https://github.com/intuit/saloon"};
 
         const rp = new RulesParser(target, rulesFile, outputdir, excludeDirs);

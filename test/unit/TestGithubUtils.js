@@ -27,7 +27,9 @@ describe("Test GitHubUtils Clone ", function() {
 
     it("Fails when repo url is not correct", () => {
         // Wait no longer than the timeout specified for the incorrect url clone to fail
-        setTimeout(() => {log.info('Ending negative git url clone on timeout');}, 2000);
+        setTimeout(() => {
+            log.info("Ending negative git url clone on timeout");
+        }, 2000);
         return gitHubUtils.cloneGitRepo("https://github.com/intuit/saloon.gitXXX", tmpDir)
             .catch((response) => {
                 expect(response).to.have.string("Error cloning repository");

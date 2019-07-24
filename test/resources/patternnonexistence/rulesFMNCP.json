@@ -91,7 +91,6 @@
         "description": "email address",
         "excludeDirs":["node_modules",".git"]
       },
-
       {
         "pattern": "(^|\\s|\\W)(\\(\\d{3}\\)(-|\\s|)|\\d{3}-)\\d{3}-\\d{4}($|\\s|\\W)",
         "failureType": "Warning",

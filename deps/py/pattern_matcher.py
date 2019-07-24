@@ -80,14 +80,16 @@ def find_all_matches(dir_path, input_patterns, output, excludeDirs):
     :param output: List of found pattern matches
     :return: output List of matches.
     """
+    print "input patterns:", input_patterns
     for (dirpath, _, filenames) in walk(dir_path):
 
         for f in filenames:
             # todo - change to os agnostic way of filename concat
             fullfile = dirpath + "/" + f
+            print(fullfile)
             if not os.path.islink(fullfile):                
                 for i, text in enumerate(open(fullfile)):
-                     match_patterns(i, text, fullfile, input_patterns, output, excludeDirs)
+                    match_patterns(i, text, fullfile, input_patterns, output, excludeDirs)
             
     return output
 
@@ -180,7 +182,7 @@ def main():
         print "Results Path: ", output_results_file
 
     except Exception, e:
-        print str(e)
+        print "Exception:", str(e)
         # Todo Add specific exit codes
         sys.exit(1)
 
