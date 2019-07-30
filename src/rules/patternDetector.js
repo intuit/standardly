@@ -8,6 +8,14 @@ const ruleType = "FMNCP";
 const logger = require("bunyan");
 const log = logger.createLogger({ name: "standardly" });
 
+/**
+ * Returns a promise that searches for patterns, writes the patterns found into the output file,
+ * and returns whether the search was successful or not.
+ * 
+ * @param {String} filesDirectory   Path to directory to be searched for patterns
+ * @param {String} inputPatternsFile     Rules file to use for search
+ * @param {String} excludeInput          Directories/folders to exclude
+ */
 function findPatterns(filesDirectory, inputPatternsFile, excludeInput) {
     return new Promise(resolve => {
         try {
@@ -75,12 +83,16 @@ function loadRuleJSON(inputFilepath, ruleType) {
     let ruleData = fs.readFileSync(inputFilepath);
     let rules = JSON.parse(ruleData);
 
-    // TODO: refactor the name found
-    let found = rules.find((r) => ruleType in r);
-    if (found) {
-        return found[ruleType];
+    try {
+        let rule = rules.find((r) => ruleType in r);
+        if (rule) {
+            return rule[ruleType];
+        }
+        return undefined;
+    } catch (err) {
+        // console.log("Error finding rules: " + err);
+        return undefined;
     }
-    return found;
 }
 
 /**
@@ -150,7 +162,6 @@ function findAllMatches(directoryPath, inputPatterns, output, excludeDirs, callb
 function matchPatterns(row, text, filename, inputPatterns, output) {
     inputPatterns.forEach((p) => {
         // Skips if filename is listed in excludeDirs for that specific pattern.
-        // TODO: skip outside of this function for fewer calls.
         let exclude = false;
         if ("excludeDirs" in p) {
             p["excludeDirs"].forEach((d) => {
@@ -191,7 +202,7 @@ function matchPatterns(row, text, filename, inputPatterns, output) {
 }
 
 /**
- * Processes results from python script output object.
+ * Processes results from finding the patterns.
  *
  * @param {*} repo
  * @returns {Promise}
@@ -206,7 +217,7 @@ function processPatterns(repo, inputPatternsFile, excludeDirs) {
                             try {
                                 const obj = JSON.parse(res);
                                 fs.unlinkSync(outputResultsFile);
-                                log.info("Pattern matcher Object created from python script");
+                                log.info("Pattern matcher Object created");
                                 return resolve(obj);
                             } catch (ex) {
                                 log.error("****** " + ex);

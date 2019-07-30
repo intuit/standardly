@@ -6,18 +6,18 @@ const rulesFile = appRoot.path + "/test/resources/patternnonexistence/rulesFMNCP
 const repo = appRoot.path + "/src/rules";
 
 describe("Test Pattern Detector", function() {
-    it("Run python script and test object", function() {
-        // this.timeout(10000);
+    it("Test with rulesfile containing only FMNCP in directory with 0 matches", function() {
         return patternDetector.processPatterns(repo, rulesFile).then(response => {
             expect(response).to.exist;
             expect(response).to.be.not.empty;
+            expect(response).to.have.lengthOf(1);
         });
     });
-    it("Run python script and test object", function() {
-        // this.timeout(10000);
+    it("Test with rulesfile containing multiple different rules in directory with 0 matches", function() {
         return patternDetector.processPatterns(repo, appRoot.path + "/test/resources/rulesparser/sample.json").then(response => {
             expect(response).to.exist;
             expect(response).to.be.not.empty;
+            expect(response).to.have.lengthOf(1);
         });
     });
     it("Test undefined rules input file", function() {
@@ -40,34 +40,42 @@ describe("Test Pattern Detector", function() {
         return patternDetector.processPatterns(repo, appRoot.path + "/test/resources/patternexistence/rulesFMCP.json").then(response => {
             expect(response).to.exist;
             expect(response).to.be.not.empty;
+            expect(response).to.have.lengthOf(1);
         });
     });
     it("Testing files that should be excluded", function() {
         return patternDetector.processPatterns(appRoot.path + "/test/resources/patterndetector/exclude/node_modules", rulesFile).then(response => {
             expect(response).to.exist;
             expect(response).to.be.not.empty;
+            expect(response).to.have.lengthOf(1);
         });
     });
     it("Testing files that should contain patterns", function() {
         return patternDetector.processPatterns(appRoot.path + "/test/resources/patternnonexistence", rulesFile).then(response => {
             expect(response).to.exist;
             expect(response).to.be.not.empty;
+            expect(response).to.have.lengthOf(19); // double check this
         });
     });
     it("Testing single exclude", function() {
         return patternDetector.processPatterns(repo, rulesFile, "rules").then(response => {
             expect(response).to.exist;
             expect(response).to.be.not.empty;
+            expect(response).to.have.lengthOf(1);
         });
     });
     it("Testing multiple exclude (comma-separated)", function() {
         return patternDetector.processPatterns(appRoot.path + "/test/resources/patternnonexistence", rulesFile, "pii_test.txt,ip_addr_test.txt").then(response => {
             expect(response).to.exist;
             expect(response).to.be.not.empty;
+            expect(response).to.have.lengthOf(5);
         });
     });
-    it("Test pattern matching error from rules JSON", function() {
-        return patternDetector.processPatterns(repo, appRoot.path + "/test/resources/patterndetector/incorrectRules.json").then(() => Promise.reject(new Error("Expected incorrect json format to result in reject.")),
-            err => chai.assert.instanceOf(err, Error));
+    it("Testing incorrect rules file -> couldn't find key", function() {
+        return patternDetector.processPatterns(repo, appRoot.path + "/test/resources/patterndetector/incorrectRules.json").then(response => {
+            expect(response).to.exist;
+            expect(response).to.be.not.empty;
+            expect(response).to.have.lengthOf(1);
+        });
     });
 });
