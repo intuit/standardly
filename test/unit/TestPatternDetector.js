@@ -44,7 +44,7 @@ describe("Test Pattern Detector", function() {
         });
     });
     it("Testing files that should be excluded", function() {
-        return patternDetector.processPatterns(appRoot.path + "/test/resources/patterndetector/exclude/node_modules", rulesFile).then(response => {
+        return patternDetector.processPatterns(appRoot.path + "/test/resources/patterndetector/testExclude", rulesFile).then(response => {
             expect(response).to.exist;
             expect(response).to.be.not.empty;
             expect(response).to.have.lengthOf(1);

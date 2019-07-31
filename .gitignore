@@ -3,7 +3,6 @@
 .project
 .settings
 .vscode
-.env
 node_modules
 reports
 coverage/

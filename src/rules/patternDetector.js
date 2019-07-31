@@ -148,13 +148,13 @@ function processPatterns(repo, inputPatternsFile, excludeInput) {
             if (!inputPatternsFile) {
                 return reject(new Error("Please provide input json file path that contains patterns to be found."));
             } else if (!fs.existsSync(inputPatternsFile)) {
-                return reject(new Error("Path " + inputPatternsFile + " of input rules json not found."));
+                return reject(new Error("Path " + inputPatternsFile + " for input rules json not found."));
             }
 
             if (!repo) {
                 return reject(new Error("Please provide code directory path where patterns have to be found."));
             } else if (!fs.existsSync(repo)) {
-                return reject(new Error("Path " + repo + " of input rules json not found."));
+                return reject(new Error("Path " + repo + " for repo to scan not found."));
             }
 
             let excludeDirs = [];

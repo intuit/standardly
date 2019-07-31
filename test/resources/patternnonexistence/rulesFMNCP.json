@@ -17,7 +17,7 @@
         "ruleID": "OOS-FMNCP-0002",
         "patternType": "url",
         "description": "internal urls",
-        "excludeDirs":["node_modules",".git"]
+        "excludeDirs":["node_modules",".git","testExclude"]
       },
       {
         "pattern": "((?<!developer)(?<!opensource))(\\.company\\.com)",
@@ -107,7 +107,7 @@
         "ruleID": "OOS-FMNCP-0012",
         "patternType": "ssn",
         "description": "SSN",
-        "excludeDirs":["node_modules",".git"]
+        "excludeDirs":["node_modules",".git","testExclude"]
       }
     ]
   }
