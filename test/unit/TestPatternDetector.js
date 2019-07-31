@@ -33,7 +33,7 @@ describe("Test Pattern Detector", function() {
             err => chai.assert.instanceOf(err, Error));
     });
     it("Test incorrect files directory", function() {
-        return patternDetector.processPatterns(appRoot.path + "/src/nonexistentdirectory", rulesFile).then(() => Promise.reject(new Error("Expected undefined directory input to result in reject.")),
+        return patternDetector.processPatterns(appRoot.path + "/src/nonexistentdirectory", rulesFile).then(() => Promise.reject(new Error("Expected incorrect files directory input to result in reject.")),
             err => chai.assert.instanceOf(err, Error));
     });
     it("Test loading file with no FMNCP rules", function() {

@@ -1,74 +1,6 @@
 "use strict";
 const fs = require("fs");
-const ioUtils = require("../lib/ioUtils");
-const appRoot = require("app-root-path");
-const outputResultsFile =
-  appRoot.path + "/reports/pattern-matcher-results.json";
 const ruleType = "FMNCP";
-const logger = require("bunyan");
-const log = logger.createLogger({ name: "standardly" });
-
-/**
- * Returns a promise that searches for patterns, writes the patterns found into the output file,
- * and returns whether the search was successful or not.
- * 
- * @param {String} filesDirectory   Path to directory to be searched for patterns
- * @param {String} inputPatternsFile     Rules file to use for search
- * @param {String} excludeInput          Directories/folders to exclude
- */
-function findPatterns(filesDirectory, inputPatternsFile, excludeInput) {
-    return new Promise(resolve => {
-        try {
-            // Initial checks for valid inputs
-            if (!inputPatternsFile) {
-                log.error("Please provide input json file path that contains patterns to be found.");
-                return resolve(false);
-            } else if (!fs.existsSync(inputPatternsFile)) {
-                log.error("Path " + inputPatternsFile + " of input rules json not found.");
-                return resolve(false);
-            }
-
-            if (!filesDirectory) {
-                log.error("Please provide code directory path where patterns have to be found.");
-                return resolve(false);
-            } else if (!fs.existsSync(filesDirectory)) {
-                log.error("Path " + filesDirectory + " of input rules json not found.");
-                return resolve(false);
-            }
-
-            let excludeDirs = [];
-            if (excludeInput) {
-                excludeDirs = (excludeInput.includes(",")) ? excludeInput.split(",") : [excludeInput];
-            }
-
-            let output = [];
-
-            // Load rules/patterns list
-            let inputPatterns = loadRuleJSON(inputPatternsFile, ruleType);
-            if (!inputPatterns) {
-                output.push({"evaluationStatus": "Pass",
-                    "evaluationMessage": "No key found for rule type " + ruleType + " patterns in input rules file."});
-                fs.writeFileSync(outputResultsFile, JSON.stringify(output));
-                return resolve(true);
-            }
-
-            // Find all patterns
-            findAllMatches(filesDirectory, inputPatterns, output, excludeDirs, (output) => {
-                if (output.length == 0) {
-                    output.push({"evaluationStatus": "Pass",
-                        "evaluationMessage": "No matches found for rule type " + ruleType + "."});
-                }
-
-                // Write found patterns into output
-                fs.writeFileSync(outputResultsFile, JSON.stringify(output));
-                resolve(true);
-            });
-        } catch (ex) {
-            log.error("ERROR WITH FINDING PATTERNS: " + ex);
-            resolve(false);
-        }
-    });
-}
 
 /**
  * Loads the list of patterns from the input file and parses them, returning the
@@ -202,32 +134,55 @@ function matchPatterns(row, text, filename, inputPatterns, output) {
 }
 
 /**
- * Processes results from finding the patterns.
- *
- * @param {*} repo
- * @returns {Promise}
- */
-function processPatterns(repo, inputPatternsFile, excludeDirs) {
+  * Finds patterns
+  *
+  * @param {*} repo                 Repo to scan for patterns
+  * @param {*} inputPatternsFile    Rules file to use to scan
+  * @param {*} excludeInput         Files/directories to exclude
+  * @returns {Promise}
+  */
+function processPatterns(repo, inputPatternsFile, excludeInput) {
     return new Promise((resolve, reject) => {
-        findPatterns(repo, inputPatternsFile, excludeDirs)
-            .then(response => {
-                if (response) {
-                    ioUtils.readFile(outputResultsFile, true)
-                        .then(function(res) {
-                            try {
-                                const obj = JSON.parse(res);
-                                fs.unlinkSync(outputResultsFile);
-                                log.info("Pattern matcher Object created");
-                                return resolve(obj);
-                            } catch (ex) {
-                                log.error("****** " + ex);
-                                return reject(ex);
-                            }
-                        });
-                } else {
-                    return reject(new Error("Pattern matching not generated correctly, check logs"));
+        try {
+            // Initial checks for valid inputs
+            if (!inputPatternsFile) {
+                return reject(new Error("Please provide input json file path that contains patterns to be found."));
+            } else if (!fs.existsSync(inputPatternsFile)) {
+                return reject(new Error("Path " + inputPatternsFile + " of input rules json not found."));
+            }
+
+            if (!repo) {
+                return reject(new Error("Please provide code directory path where patterns have to be found."));
+            } else if (!fs.existsSync(repo)) {
+                return reject(new Error("Path " + repo + " of input rules json not found."));
+            }
+
+            let excludeDirs = [];
+            if (excludeInput) {
+                excludeDirs = (excludeInput.includes(",")) ? excludeInput.split(",") : [excludeInput];
+            }
+
+            let output = [];
+
+            // Load rules/patterns list
+            let inputPatterns = loadRuleJSON(inputPatternsFile, ruleType);
+            if (!inputPatterns) {
+                output.push({"evaluationStatus": "Pass",
+                    "evaluationMessage": "No key found for rule type " + ruleType + " patterns in input rules file."});
+                return resolve(output);
+            }
+
+            // Find all patterns
+            findAllMatches(repo, inputPatterns, output, excludeDirs, (output) => {
+                if (output.length == 0) {
+                    output.push({"evaluationStatus": "Pass",
+                        "evaluationMessage": "No matches found for rule type " + ruleType + "."});
                 }
+                return resolve(output);
             });
+        } catch (ex) {
+            return reject(new Error("ERROR WITH FINDING PATTERNS: " + ex));
+        }
     });
 }
 
