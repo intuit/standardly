@@ -48,7 +48,6 @@
 * node 10.16.0
 * npm
 * git
-* python
 
 ## How To Use
 Download/clone this repository, to clone:
