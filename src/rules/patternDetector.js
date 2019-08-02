@@ -60,7 +60,7 @@ function processPatterns(repo, rules, excludeDirs) {
                         });
                 } else {
                     log.error("!!!!!!!!!Python script output was not generated correctly");
-                    return reject("Python script output was not generated correctly");
+                    return reject(Error("Python script output was not generated correctly"));
                 }
             });
     });
