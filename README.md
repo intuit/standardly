@@ -48,7 +48,6 @@
 * node 10.16.0
 * npm
 * git
-* python
 
 ## How To Use
 Download/clone this repository, to clone:
@@ -126,9 +125,6 @@ npm run test:integration
 
 ## Extending Standardly To Support New Rules
 See [CREATING-RULES.md](docs/CREATING-RULES.md) 
-
-## Pattern Matching
-See [PATTERN-MATCHING.md](deps/py/PATTERN-MATCHING.md)
 
 ## How To Contribute
 See [CONTRIBUTING.md](CONTRIBUTING.md) 
