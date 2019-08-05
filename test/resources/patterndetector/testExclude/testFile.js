@@ -11,4 +11,4 @@ function testFunc() {
 
 module.exports = {
     testFunc: testFunc
-}
+};

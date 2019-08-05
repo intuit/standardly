@@ -1,11 +1,11 @@
 const chai = require("chai");
 const expect = chai.expect;
-const patternDetector = require("../../src/rules/patternDetector.js");
+const patternDetector = require("../../src/rules/patternDetector-py.js");
 const appRoot = require("app-root-path");
 const rulesFile = appRoot.path + "/test/resources/patternnonexistence/rulesFMNCP.json";
 const repo = appRoot.path + "/src/rules";
 
-describe("Test Pattern Detector - JavaScript", function() {
+describe("Test Pattern Detector", function() {
     it("Test with rulesfile containing only FMNCP in directory with 0 matches", function() {
         return patternDetector.processPatterns(repo, rulesFile).then(response => {
             expect(response).to.exist;
