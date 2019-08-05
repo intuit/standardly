@@ -1,6 +1,8 @@
 "use strict";
 const fs = require("fs");
 const ruleType = "FMNCP";
+let logger = require("bunyan");
+let log = logger.createLogger({ name: "standardly" });
 
 /**
  * Loads the list of patterns from the input file and parses them, returning the
@@ -169,6 +171,7 @@ function processPatterns(repo, inputPatternsFile, excludeInput) {
             if (!inputPatterns) {
                 output.push({"evaluationStatus": "Pass",
                     "evaluationMessage": "No key found for rule type " + ruleType + " patterns in input rules file."});
+                log.info("Reporting from FMNCP resolving results");
                 return resolve(output);
             }
 
@@ -178,6 +181,7 @@ function processPatterns(repo, inputPatternsFile, excludeInput) {
                     output.push({"evaluationStatus": "Pass",
                         "evaluationMessage": "No matches found for rule type " + ruleType + "."});
                 }
+                log.info("Reporting from FMNCP resolving results");
                 return resolve(output);
             });
         } catch (ex) {
