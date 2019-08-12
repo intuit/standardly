@@ -24,7 +24,7 @@ class PatternNonExistenceTestlet extends Testlet {
     evaluate() {
         return new Promise(resolve => {
             let patternResults = [];
-            patternDetector.processPatterns(this.target.localdir, this.ruleFileName, this.excludeDirs)
+            patternDetector.processPatterns(this.target.localdir, this.ruleSet, this.excludeDirs)
                 .then(obj => {
                     if ((Object.keys(obj).length === 1) && (obj[0]["evaluationStatus"] === "Pass")) {
                         const vResult = new EvaluationResult("", obj[0]["evaluationStatus"], obj[0]["evaluationMessage"] + " in " + this.target);
