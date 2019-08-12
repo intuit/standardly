@@ -5,31 +5,6 @@ let logger = require("bunyan");
 let log = logger.createLogger({ name: "standardly" });
 
 /**
- * Loads the list of patterns from the input file and parses them, returning the
- * pattern if it matches the rule type and undefined if not.
- *
- * @param {[String, Buffer, URL]} inputFilepath
- * @param {String} ruleType
- *
- * @returns {Array} pattern list
- */
-function loadRuleJSON(inputFilepath, ruleType) {
-    let ruleData = fs.readFileSync(inputFilepath);
-    let rules = JSON.parse(ruleData);
-
-    try {
-        let rule = rules.find((r) => ruleType in r);
-        if (rule) {
-            return rule[ruleType];
-        }
-        return undefined;
-    } catch (err) {
-        // console.log("Error finding rules: " + err);
-        return undefined;
-    }
-}
-
-/**
  * Performs a recursive walk of all directories inside this directory path
  * and returns a list of all the files in the directory.
  *
@@ -55,11 +30,11 @@ function walk(directoryPath) {
  * Finds all the matches for each file in the directory path inputted.
  *
  * @param {String} directoryPath
- * @param {Array} inputPatterns
+ * @param {Array} ruleSet
  * @param {Array} output
  * @param {Array[String]} excludeDirs
  */
-function findAllMatches(directoryPath, inputPatterns, output, excludeDirs, callback) {
+function findAllMatches(directoryPath, ruleSet, output, excludeDirs, callback) {
     let files = walk(directoryPath);
     files.forEach((file) => {
         let exclude = false;
@@ -75,7 +50,7 @@ function findAllMatches(directoryPath, inputPatterns, output, excludeDirs, callb
 
         let fileData = fs.readFileSync(file).toString().split("\n");
         for (var i = 0; i < fileData.length; i++) {
-            output = matchPatterns(i, fileData[i], file, inputPatterns, output);
+            output = matchPatterns(i, fileData[i], file, ruleSet, output);
         }
     });
     callback(output);
@@ -87,14 +62,14 @@ function findAllMatches(directoryPath, inputPatterns, output, excludeDirs, callb
  * @param {int} row
  * @param {String} text
  * @param {String} filename
- * @param {Array} inputPatterns
+ * @param {Array} ruleSet
  * @param {Array} output
  * @param {Array} excludeDirs
  *
  * @returns {Array} output with list of new patterns found concatenated on it
  */
-function matchPatterns(row, text, filename, inputPatterns, output) {
-    inputPatterns.forEach((p) => {
+function matchPatterns(row, text, filename, ruleSet, output) {
+    ruleSet.forEach((p) => {
         // Skips if filename is listed in excludeDirs for that specific pattern.
         let exclude = false;
         if ("excludeDirs" in p) {
@@ -139,20 +114,13 @@ function matchPatterns(row, text, filename, inputPatterns, output) {
   * Finds patterns
   *
   * @param {*} repo                 Repo to scan for patterns
-  * @param {*} inputPatternsFile    Rules file to use to scan
+  * @param {*} ruleSet              Rules file to use to scan
   * @param {*} excludeInput         Files/directories to exclude
   * @returns {Promise}
   */
-function processPatterns(repo, inputPatternsFile, excludeInput) {
+function processPatterns(repo, ruleSet, excludeInput) {
     return new Promise((resolve, reject) => {
         try {
-            // Initial checks for valid inputs
-            if (!inputPatternsFile) {
-                return reject(new Error("Please provide input json file path that contains patterns to be found."));
-            } else if (!fs.existsSync(inputPatternsFile)) {
-                return reject(new Error("Path " + inputPatternsFile + " for input rules json not found."));
-            }
-
             if (!repo) {
                 return reject(new Error("Please provide code directory path where patterns have to be found."));
             } else if (!fs.existsSync(repo)) {
@@ -167,16 +135,15 @@ function processPatterns(repo, inputPatternsFile, excludeInput) {
             let output = [];
 
             // Load rules/patterns list
-            let inputPatterns = loadRuleJSON(inputPatternsFile, ruleType);
-            if (!inputPatterns) {
+            if (!ruleSet) {
                 output.push({"evaluationStatus": "Pass",
-                    "evaluationMessage": "No key found for rule type " + ruleType + " patterns in input rules file."});
+                    "evaluationMessage": "No key found for rule type " + ruleType + " patterns in rule set."});
                 log.info("Reporting from FMNCP resolving results");
                 return resolve(output);
             }
 
             // Find all patterns
-            findAllMatches(repo, inputPatterns, output, excludeDirs, (output) => {
+            findAllMatches(repo, ruleSet, output, excludeDirs, (output) => {
                 if (output.length == 0) {
                     output.push({"evaluationStatus": "Pass",
                         "evaluationMessage": "No matches found for rule type " + ruleType + "."});
