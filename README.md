@@ -59,7 +59,7 @@ git clone https://github.com/intuit/standardly.git
 Change your working directory so that you are inside the Standardly repository:
 
 ```
-cd std-gov-oos
+cd standardly
 ```
 
 Before you can run the tool first install the dependencies it needs:
@@ -105,7 +105,7 @@ change the location of  the results.csv file pass a --outputdir (or simply -o) p
 results.csv file to be. Below is an example of explicitly specifying the outputdir. 
 
 ```
-node src/app.js -g https://github.com/argoproj/argo -r /Users/standardlyRocks/Desktop/std-gov-oos/sample/rules.json -o /Users/standardlyRocks/Desktop/reports
+node src/app.js -g https://github.com/argoproj/argo -r /Users/standardlyRocks/Desktop/standardly/sample/rules.json -o /Users/standardlyRocks/Desktop/reports
 ```
 
 When this command is executed, a results.csv file will be created in the ```/Users/standardlyRocks/Desktop/reports``` directory
