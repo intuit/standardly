@@ -12,7 +12,7 @@ const gitDetectResultsDir = appRoot.path + "/reports/";
 const gitDetectOutputFile = "defectReport.yaml";
 
 let logger = require("bunyan");
-let log = logger.createLogger({ name: "std-gov-oos" });
+let log = logger.createLogger({ name: "standardly" });
 
 /**
  * Runs git detect tool's executable to find secret keys.

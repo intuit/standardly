@@ -4,7 +4,7 @@ const ioUtils = require("./ioUtils");
 const notfound = "404: Not Found";
 const fs = require("fs");
 let logger = require("bunyan");
-let log = logger.createLogger({ name: "std-gov-oos" });
+let log = logger.createLogger({ name: "standardly" });
 
 /**
  * Validates if the file exists

@@ -2,7 +2,7 @@
 const fs = require("fs");
 
 let logger = require("bunyan");
-let log = logger.createLogger({ name: "std-gov-oos" });
+let log = logger.createLogger({ name: "standardly" });
 
 /**
  * Promisified function to write to a file asynchronously

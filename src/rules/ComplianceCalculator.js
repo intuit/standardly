@@ -1,7 +1,7 @@
 "use strict";
 const utils = require("../lib/utils");
 let logger = require("bunyan");
-let log = logger.createLogger({ name: "std-gov-oos" });
+let log = logger.createLogger({ name: "standardly" });
 
 /**
  * The compliance calculator

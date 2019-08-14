@@ -9,7 +9,7 @@ const tmpDir = path.join(appPath, "/tmp");
 const fse = require("fs-extra");
 
 let logger = require("bunyan");
-let log = logger.createLogger({ name: "std-gov-oos" });
+let log = logger.createLogger({ name: "standardly" });
 
 describe("Test GitHubUtils Clone ", function() {
     it("Sucessfully clones a repo", () => { // skipping until we get a github service account.

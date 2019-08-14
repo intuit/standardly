@@ -1,7 +1,7 @@
 "use strict";
 const appRoot = require("app-root-path");
 const logger = require("bunyan");
-const log = logger.createLogger({ name: "std-gov-oos" });
+const log = logger.createLogger({ name: "standardly" });
 
 
 module.exports = {
