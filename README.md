@@ -72,13 +72,13 @@ Now Standardly is equipped to start scanning your resource!
 <p>To scan a local directory, run: </p>
 
 ```
-node src/app.js --localdir <directory_location> --rulesfile <fullpath_of_rules_file>
+standardly --localdir <directory_location> --rulesfile <fullpath_of_rules_file>
 ```
 
 or 
 
 ```
-node src/app.js -l <directory_location> -r <fullpath_of_rules_file>
+standardly -l <directory_location> -r <fullpath_of_rules_file>
 ```
 
 or if running in a bash shell, simply run
@@ -91,13 +91,13 @@ or if running in a bash shell, simply run
 To scan a github repo, run:
 
 ```
-node src/app.js --giturl <url_of_gitrepo_to_scan> --rulesfile <fullpath_of_rules_file>
+standardly --giturl <url_of_gitrepo_to_scan> --rulesfile <fullpath_of_rules_file>
 ```
 
 or 
 
 ```
-node src/app.js -g <url_of_gitrepo_to_scan> -r <fullpath_of_rules_file>
+standardly -g <url_of_gitrepo_to_scan> -r <fullpath_of_rules_file>
 ```
 
 The output is created as a results.csv file in a folder named 'reports' under the current directory. If you would like to 
@@ -105,7 +105,7 @@ change the location of  the results.csv file pass a --outputdir (or simply -o) p
 results.csv file to be. Below is an example of explicitly specifying the outputdir. 
 
 ```
-node src/app.js -g https://github.com/argoproj/argo -r /Users/standardlyRocks/Desktop/standardly/sample/rules.json -o /Users/standardlyRocks/Desktop/reports
+standardly -g https://github.com/argoproj/argo -r /Users/standardlyRocks/Desktop/standardly/sample/rules.json -o /Users/standardlyRocks/Desktop/reports
 ```
 
 When this command is executed, a results.csv file will be created in the ```/Users/standardlyRocks/Desktop/reports``` directory
