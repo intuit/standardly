@@ -10,7 +10,7 @@
     "test": "nyc --reporter=cobertura mocha './test/unit/*.js'",
     "test:integration": "mocha './test/integration/*.js'",
     "lint": "node_modules/.bin/eslint src test",
-    "release": "auto shipit"
+    "release": "auto shipit -w"
   },
   "repository": {
     "type": "git",
