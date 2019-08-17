@@ -1,8 +1,9 @@
 Before you submit an issue, ensure that the issue is not already found in this list.
 
-If you are absolutely sure that this issue isnt already open, clearly describe the problem providing the reason why you believe it needs to be solved. If this is a bug please include steps to reproduce the bug, including logs / screenshots as appropriate
+If you are absolutely sure that this issue isn't already open, clearly describe the problem providing the reason why you believe it needs to be solved. If this is a bug please include steps to reproduce the bug, including logs / screenshots as appropriate
 
 ---
+
 name: Feature Request
 about: You have an idea? We are all ears!
 title: ''

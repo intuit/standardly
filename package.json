@@ -21,7 +21,7 @@
     "governance",
     "compliance"
   ],
-  "author": "",
+  "author": "Andrew Lisowski <lisowski54@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
     "app-root-path": "2.1.0",
