@@ -1,5 +1,5 @@
 {
-  "name": "standardly",
+  "name": "@intuit/standardly",
   "version": "0.1.0",
   "description": "DIY framework for Standards Governance",
   "main": "index.js",
@@ -9,7 +9,8 @@
   "scripts": {
     "test": "nyc --reporter=cobertura mocha './test/unit/*.js'",
     "test:integration": "mocha './test/integration/*.js'",
-    "lint": "node_modules/.bin/eslint ."
+    "lint": "node_modules/.bin/eslint src test",
+    "release": "auto shipit"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,7 @@
     "governance",
     "compliance"
   ],
-  "author": "",
+  "author": "Andrew Lisowski <lisowski54@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
     "app-root-path": "2.1.0",
@@ -35,11 +36,19 @@
     "request": "2.88.0"
   },
   "devDependencies": {
+    "auto": "^7.3.0",
+    "babel-eslint": "^10.0.2",
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
     "csvtojson": "2.0.8",
-    "eslint": "5.12.1",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-mocha": "5.2.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
     "husky": "1.3.1",
     "mocha": "5.2.0",
     "nyc": "14.1.1",
@@ -47,7 +56,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "node_modules/.bin/eslint --fix . && npm test && npm run test:integration"
+      "pre-commit": "npm run lint -- --fix && npm test && npm run test:integration"
     }
   },
   "bin": {
@@ -55,5 +64,11 @@
   },
   "engines": {
     "node": ">=10.16.0"
+  },
+  "auto": {
+    "plugins": [
+      "npm",
+      "released"
+    ]
   }
 }

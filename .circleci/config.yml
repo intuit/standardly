@@ -1,29 +1,97 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
+
 version: 2
+
+defaults: &defaults
+  working_directory: ~/standardly
+  docker:
+    - image: circleci/node:latest-browsers
+
 jobs:
-  build:
-    docker:
-      - image: circleci/node:11.0.0
-
-    working_directory: ~/standardly
-
+  install:
+    <<: *defaults
     steps:
       - checkout
-
-      # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      - run: npm install
-
+            # Find a cache corresponding to this specific package.json checksum
+            # when this file is changed, this key will fail
+            - standardly-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum ".circleci/config.yml" }}
+            - standardly-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - standardly-{{ .Branch }}
+            # Find the most recent cache used from any branch
+            - standardly-master
+            - standardly-
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
       - save_cache:
+          key: standardly-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum ".circleci/config.yml" }}
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ~/.cache/yarn
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
 
-      # run tests!
-      - run: npm test
+  test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/standardly
+      - run:
+          name: Test
+          command: yarn test
+
+  lint:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/standardly
+      - run:
+          name: Lint
+          command: yarn lint
+
+  # integration:
+  #   <<: *defaults
+  #   steps:
+  #     - attach_workspace:
+  #         at: ~/standardly
+  #     - run:
+  #         name: Integration Tests
+  #         command: yarn test:integration
+
+  release:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/standardly
+      - run: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - run:
+          name: Release
+          command: yarn release
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - install
+    
+      - test:
+          requires:
+            - install
+
+      - lint:
+          requires:
+            - install
+
+      # - integration:
+      #     requires:
+      #       - install
+    
+      - release:
+          requires:
+            - lint
+            - test
+            # - integration
+    
