@@ -1,6 +1,6 @@
 {
   "name": "@intuit/standardly",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "DIY framework for Standards Governance",
   "main": "index.js",
   "directories": {
