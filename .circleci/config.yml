@@ -52,14 +52,14 @@ jobs:
           name: Lint
           command: yarn lint
 
-  # integration:
-  #   <<: *defaults
-  #   steps:
-  #     - attach_workspace:
-  #         at: ~/standardly
-  #     - run:
-  #         name: Integration Tests
-  #         command: yarn test:integration
+  integration:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/standardly
+      - run:
+          name: Integration Tests
+          command: yarn test:integration
 
   release:
     <<: *defaults
